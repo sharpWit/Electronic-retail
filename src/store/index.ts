@@ -1,3 +1,4 @@
+import SortedProductsListReducer from "./sortedProductList-slice";
 import sideNavBarReducer from "./sideNavBar-slice";
 import activeMenuItemReducer from "./activeMenuItem-slice";
 import megaMenuReducer from "./megaMenu-slice";
@@ -14,6 +15,7 @@ const store = configureStore({
     megaMenu: megaMenuReducer,
     activeMenuItem: activeMenuItemReducer,
     sideNavBar: sideNavBarReducer,
+    sortedProductsList: SortedProductsListReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
