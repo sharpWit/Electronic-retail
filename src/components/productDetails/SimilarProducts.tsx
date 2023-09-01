@@ -1,6 +1,6 @@
 import { IProduct } from "@/types/products ";
-import CarouselBox from "../CarouselBox/CarouselBox";
-import CarouselBoxCard from "../CarouselBox/CarouselBoxCard";
+import CarouselBox from "../UI/CarouselBox/CarouselBox";
+import CarouselBoxCard from "../UI/CarouselBox/CarouselBoxCard";
 
 interface Props {
   products: IProduct[];

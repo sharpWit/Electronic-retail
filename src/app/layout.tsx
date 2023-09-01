@@ -1,32 +1,31 @@
 "use client";
 
 import type { Metadata } from "next";
-import { ThemeProvider } from "next-themes";
-import NextNProgress from "nextjs-progressbar";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QueryClient } from "@tanstack/react-query";
 import { Provider } from "react-redux";
-import store from "../store";
 import { ToastContainer } from "react-toastify";
+import NextNProgress from "nextjs-progressbar";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import store from "@/store ";
+import Header from "@/components/Header/Header ";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/globals.css";
-import Header from "@/components/Header/Header ";
-import Footer from "@/components/Footer/Footer ";
 
-const queryClient = new QueryClient({
+export const metadata: Metadata = {
+  title: "فروشگاه بست ستاپس",
+  description: "طراحی و توسعه این فروشگاه توسط سعید خسروی انجام شده است",
+};
+
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 0,
     },
   },
 });
-
-export const metadata: Metadata = {
-  title: "فروشگاه بست ستاپس",
-  description: "طراحی و توسعه این فروشگاه توسط سعید خسروی انجام شده است",
-};
 
 export default function RootLayout({
   children,

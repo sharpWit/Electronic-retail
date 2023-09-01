@@ -1,7 +1,7 @@
-import { IProduct } from "@/types/products ";
-import Image from "next/image";
 import Link from "next/link";
-import ProductPrice from "../UI/ProductPrice";
+import Image from "next/image";
+import ProductPrice from "../ProductPrice";
+import { IProduct } from "@/types/products ";
 
 interface Props {
   product: IProduct;

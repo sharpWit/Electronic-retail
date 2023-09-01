@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { NextArrow, PrevArrow } from "./CarouselBoxArrows";
 import Slider from "react-slick";
 import { HiOutlineChevronLeft, HiOutlineChevronRight } from "react-icons/hi";
+import { NextArrow, PrevArrow } from "./CarouselBoxArrows";
 
 interface Props {
   title: string;

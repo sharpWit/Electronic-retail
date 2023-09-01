@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-
 import CartIcon from "../Cart/CartIcon";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";

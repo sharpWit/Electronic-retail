@@ -1,3 +1,4 @@
+import specialOfferProductsReducer from "./specialOfferProducts-slice";
 import SortedProductsListReducer from "./sortedProductList-slice";
 import sideNavBarReducer from "./sideNavBar-slice";
 import activeMenuItemReducer from "./activeMenuItem-slice";
@@ -16,6 +17,7 @@ const store = configureStore({
     activeMenuItem: activeMenuItemReducer,
     sideNavBar: sideNavBarReducer,
     sortedProductsList: SortedProductsListReducer,
+    specialOfferProductsList: specialOfferProductsReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
