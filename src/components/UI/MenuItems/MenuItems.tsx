@@ -3,18 +3,18 @@ import { HiChevronLeft } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { megaMenuActions } from "@/store/megaMenu-slice ";
 import { useWindowDimensions } from "@/hooks/useWindowDimensions ";
-import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
-import { IDropDown } from "@/types/dropDown ";
+import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { TDropDown } from "@/types/dropDown ";
 import menuItems from "@/mock/menuItems ";
 
 interface Props {
   onClick?: (
-    submenu: IDropDown[] | undefined,
+    submenu: TDropDown[] | undefined,
     activeItemName: string,
     index: number
   ) => void;
   onMouseOver?: (
-    submenu: IDropDown[] | undefined,
+    submenu: TDropDown[] | undefined,
     index: number,
     activeItemName: string
   ) => void;
@@ -26,7 +26,7 @@ const MenuItems: React.FC<Props> = (props) => {
   const ArrowDirection = HiChevronLeft;
 
   function onMenuItemClickHandler(
-    productsGroup: IDropDown[] | undefined,
+    productsGroup: TDropDown[] | undefined,
     category: string,
     index: number
   ) {
@@ -35,7 +35,7 @@ const MenuItems: React.FC<Props> = (props) => {
   }
 
   const activeMenuItemIndex = useSelector(
-    (state: IActiveMenuItemRootState) =>
+    (state: TActiveMenuItemRootState) =>
       state.activeMenuItem.activeMenuItemIndex
   );
   return (

@@ -1,8 +1,8 @@
-export interface IActiveMenuItem {
+export type TActiveMenuItem = {
   activeMenuItemIndex: number;
   activeMenuItemText: string;
-}
+};
 
-export interface IActiveMenuItemRootState {
-  activeMenuItem: IActiveMenuItem;
-}
+export type TActiveMenuItemRootState = {
+  activeMenuItem: TActiveMenuItem;
+};

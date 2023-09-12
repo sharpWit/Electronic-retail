@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux";
 import { activeMenuItemActions } from "@/store/activeMenuItem-slice ";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
 import MenuItems from "../../../UI/MenuItems/MenuItems";
-import { IDropDown } from "@/types/dropDown ";
+import { TDropDown } from "@/types/dropDown ";
 import { extraMenu } from "@/mock/menuItems ";
 
 const SideNavContent = () => {
   const dispatch = useDispatch();
   const openNav = (
-    sidebarSideContent: IDropDown[] = [],
+    sidebarSideContent: TDropDown[] = [],
     activeItemName: string,
     activeItemIndex: number
   ) => {

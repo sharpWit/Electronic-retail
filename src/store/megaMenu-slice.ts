@@ -1,7 +1,7 @@
+import { TMegaMenuShow } from "@/types/megaMenu ";
 import { createSlice } from "@reduxjs/toolkit";
-import { IMegaMenuShow } from "../lib/types/megaMenu";
 
-const initialState: IMegaMenuShow = {
+const initialState: TMegaMenuShow = {
   isMegaMenuOpen: false,
 };
 

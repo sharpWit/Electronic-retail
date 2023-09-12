@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useRef } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -6,15 +8,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartUiActions } from "@/store/cartUI-slice ";
 import { changeNumbersFormatEnToFa } from "@/utilities/changeNumbersFormatEnToFa ";
 import CartBox from "./CartBox";
-import { ICartRootState, ICartUiRootState } from "@/types/cart ";
+import { TCartRootState, TCartUiRootState } from "@/types/cart ";
 
 const Basket = () => {
   const dispatch = useDispatch();
   const showCartBox = useSelector(
-    (state: ICartUiRootState) => state.cartUi.cartBoxIsVisible
+    (state: TCartUiRootState) => state.cartUi.cartBoxIsVisible
   );
   const cartItemQuantity = useSelector(
-    (state: ICartRootState) => state.cart.totalQuantity
+    (state: TCartRootState) => state.cart.totalQuantity
   );
 
   const nodeRef = useRef<HTMLDivElement>(null);

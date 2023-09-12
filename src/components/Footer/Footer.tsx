@@ -2,7 +2,6 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import FooterColumns from "./footerContent/FooterColumns";
 import SocialPart from "./footerContent/SocialPart";
-// import fa from "../../../locales/fa";
 
 const Footer = () => {
   const StartQuot = RiDoubleQuotesR;
@@ -17,7 +16,7 @@ const Footer = () => {
       </div>
       <div className="border-t-[1px] border-slate-500/30 text-center text-xs md:text-sm py-4">
         <div>
-          {/* {fa.copyRight} */}
+          © تمام حقوق این سایت محفوظ است - طراحی و توسعه با
           <BsFillSuitHeartFill
             style={{
               color: "#ee384e",
@@ -37,7 +36,7 @@ const Footer = () => {
               color: "#A71B4A",
             }}
           />
-          {/* {fa.pc_shop} */}
+          کار برای بهبود زندگی است نه برعکس.
           <EndQuot
             style={{
               display: "inline",

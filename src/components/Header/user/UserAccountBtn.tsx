@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiChevronDown } from "react-icons/hi";

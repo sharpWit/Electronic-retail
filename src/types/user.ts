@@ -1,18 +1,18 @@
-export interface IUser {
+export type TUser = {
   _id?: any;
   name?: string;
-  password?: string;
   email: string;
+  password?: string;
   isAdmin?: boolean;
   token?: string;
-}
+};
 
-export interface IUserInfo {
-  userInformation: IUser | null;
-}
+export type TUserInfo = {
+  userInformation: TUser | null;
+};
 
-//RootState interface=> used for state type in useSelector hook
+// RootState type => used for state type in useSelector hook
 
-export interface IUserInfoRootState {
-  userInfo: IUserInfo;
-}
+export type TUserInfoRootState = {
+  userInfo: TUserInfo;
+};

@@ -4,24 +4,24 @@ import { cartUiActions } from "@/store/cartUI-slice ";
 import { useExchangeRateGBPToIRR } from "@/hooks/useExchangeRateGBPToIRR ";
 import { changeNumbersFormatEnToFa } from "@/utilities/changeNumbersFormatEnToFa ";
 import CartItem from "./CartItem";
-import { ICartRootState } from "@/types/cart ";
-import { IUserInfoRootState } from "@/types/user ";
+import { TCartRootState } from "@/types/cart ";
+import { TUserInfoRootState } from "@/types/user ";
 
 const CartBox = () => {
   const dispatch = useDispatch();
 
   const cartItemQuantity = useSelector(
-    (state: ICartRootState) => state.cart.totalQuantity
+    (state: TCartRootState) => state.cart.totalQuantity
   );
 
   const cartTotalAmount = useSelector(
-    (state: ICartRootState) => state.cart.totalAmount
+    (state: TCartRootState) => state.cart.totalAmount
   );
 
-  const cartItems = useSelector((state: ICartRootState) => state.cart.items);
+  const cartItems = useSelector((state: TCartRootState) => state.cart.items);
 
   const userInfo = useSelector(
-    (state: IUserInfoRootState) => state.userInfo.userInformation
+    (state: TUserInfoRootState) => state.userInfo.userInformation
   );
 
   function onCloseCartBoxHandler() {

@@ -6,15 +6,15 @@ import { useState } from "react";
 import { HiMinusSm, HiOutlinePlusSm, HiOutlineTrash } from "react-icons/hi";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "@/store/cart-slice ";
-import { ICartRootState } from "@/types/cart ";
-import { IProduct } from "@/types/products ";
+import { TCartRootState } from "@/types/cart ";
+import { TProduct } from "@/types/products ";
 
 interface Props {
-  product: IProduct;
+  product: TProduct;
 }
 const CartItem: React.FC<Props> = ({ product }) => {
   const productQuantity = useSelector(
-    (state: ICartRootState) =>
+    (state: TCartRootState) =>
       state.cart.items.find(
         (item) => item.slug.current === product.slug.current
       )?.quantity
@@ -22,7 +22,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
   const [counter, setCounter] = useState(productQuantity);
   const dispatch = useDispatch();
 
-  function increment(product: IProduct) {
+  function increment(product: TProduct) {
     setCounter((prev) => ++prev!);
     dispatch(cartActions.addItemToCart({ product: product, quantity: 1 }));
   }

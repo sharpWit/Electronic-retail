@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { RecursiveKeyValuePair } from "tailwindcss/types/config";
 
 function withOpacity(variableName: string): string {
   return ({ opacityValue }) => {

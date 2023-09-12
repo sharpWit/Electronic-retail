@@ -1,10 +1,10 @@
 import Link from "next/link";
-// import { footerContent } from "../../../../mock/footer";
+import { footerContent } from "../../../mock/footer";
 
 const FooterColumns = () => {
   return (
     <div className="flex justify-between flex-wrap flex-grow min-width-[800px] xl:rtl:pl-60">
-      {/* {footerContent.map((item) => {
+      {footerContent.map((item) => {
         return (
           <div className="mt-6 md:mt-0" key={item.title}>
             <h2 className="text-md rtl:border-r-4 border-palette-primary px-2">
@@ -25,7 +25,7 @@ const FooterColumns = () => {
             </div>
           </div>
         );
-      })} */}
+      })}
     </div>
   );
 };

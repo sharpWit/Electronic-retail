@@ -1,36 +1,36 @@
-import { IProductDetails, TSlug } from "./products";
+import { TProductDetails } from "./products";
 
-export interface ICartProduct {
+export type TCartProduct = {
   image: any;
   name: string;
-  slug: TSlug;
+  slug: string;
   price: number;
   discount?: number;
   brand: string;
   category: string[];
   starRating: number;
   isOffer?: boolean;
-  details?: IProductDetails[];
+  details?: TProductDetails[];
   registerDate?: string;
   quantity: number;
   totalPrice: number;
-}
+};
 
-export interface ICartUI {
+export type TCartUI = {
   cartBoxIsVisible: boolean;
-}
+};
 
-export interface ICart {
-  items: ICartProduct[];
+export type TCart = {
+  items: TCartProduct[];
   totalQuantity: number;
   totalAmount: number;
-}
+};
 
-//RootState interface => use for state type in useSelector hook
+//RootState type => use for state type in useSelector hook
 
-export interface ICartUiRootState {
-  cartUi: ICartUI;
-}
-export interface ICartRootState {
-  cart: ICart;
-}
+export type TCartUiRootState = {
+  cartUi: TCartUI;
+};
+export type TCartRootState = {
+  cart: TCart;
+};
