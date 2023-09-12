@@ -3,11 +3,11 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import ProductPageActions from "./ProductPageActions";
-import { IProduct, TImage } from "@/types/products ";
+import { TProduct, TImage } from "@/types/products ";
 
 interface Props {
   imgArray: TImage[];
-  product: IProduct;
+  product: TProduct;
 }
 const ImageSection: React.FC<Props> = ({ imgArray, product }) => {
   const [selectedImg, setSelectedImg] = useState(0);

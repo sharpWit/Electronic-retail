@@ -1,8 +1,8 @@
-import { IFavorite } from "@/types/favorite ";
-import { IProduct } from "@/types/products ";
+import { TFavorite } from "@/types/favorite ";
+import { TProduct } from "@/types/products ";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: IFavorite = {
+const initialState: TFavorite = {
   items: [],
 };
 
@@ -10,7 +10,7 @@ const favoriteSlice = createSlice({
   name: "favorite",
   initialState,
   reducers: {
-    addToFavorite(state, action: PayloadAction<IProduct>) {
+    addToFavorite(state, action: PayloadAction<TProduct>) {
       state.items.push({
         ...action.payload,
       });

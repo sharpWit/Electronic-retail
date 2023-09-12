@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BsShop } from "react-icons/bs";
-import { IBreadcrumb } from "@/types/breadcrumb ";
+import { TBreadcrumb } from "@/types/breadcrumb ";
 
 const convertBreadcrumb = (str: string) => {
   return str
@@ -15,7 +15,7 @@ const convertBreadcrumb = (str: string) => {
 };
 
 const Breadcrumb = () => {
-  const [breadcrumbs, setBreadcrumbs] = useState<IBreadcrumb[] | []>([]);
+  const [breadcrumbs, setBreadcrumbs] = useState<TBreadcrumb[] | []>([]);
   const pathsName = usePathname();
   const decodedURL = decodeURIComponent(pathsName);
   useEffect(() => {
@@ -32,7 +32,7 @@ const Breadcrumb = () => {
 
       setBreadcrumbs(pathsArray);
     }
-  }, [pathsName]);
+  }, [pathsName, decodedURL]);
 
   if (!breadcrumbs) {
     return null;

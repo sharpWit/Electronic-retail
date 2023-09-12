@@ -1,8 +1,8 @@
-import { IDropDown } from "@/types/dropDown ";
-import { ISideNavBar } from "@/types/sidebar ";
+import { TDropDown } from "@/types/dropDown ";
+import { TSideNavBar } from "@/types/sidebar ";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: ISideNavBar = {
+const initialState: TSideNavBar = {
   isSidebarOpen: false,
   isNavbarOpen: false,
   dropDownList: [],
@@ -29,7 +29,7 @@ const sideNavBarSlice = createSlice({
       state.isNavbarOpen = false;
     },
 
-    setSidebarEntries(state, action: PayloadAction<IDropDown[]>) {
+    setSidebarEntries(state, action: PayloadAction<TDropDown[]>) {
       state.dropDownList = action.payload;
     },
   },

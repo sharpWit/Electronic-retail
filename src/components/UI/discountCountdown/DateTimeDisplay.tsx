@@ -1,8 +1,8 @@
-interface Props {
+type Props = {
   value: number;
   type: string;
   isDanger: boolean;
-}
+};
 const DateTimeDisplay: React.FC<Props> = ({ value, type, isDanger }) => {
   const dateTime = new Intl.NumberFormat("fa-IR").format(value);
   return (

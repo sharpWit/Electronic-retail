@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { activeMenuItemActions } from "@/store/activeMenuItem-slice ";
 import SubMenu from "./SubMenu";
 import MenuItems from "@/components/UI/MenuItems/MenuItems ";
-import { IDropDown } from "@/types/dropDown ";
+import { TDropDown } from "@/types/dropDown ";
 import menuItems from "@/mock/menuItems ";
 
 const MenusContainer = () => {
-  const [subMenuItems, setSubMenuItems] = useState<IDropDown[]>();
+  const [subMenuItems, setSubMenuItems] = useState<TDropDown[]>();
   const dispatch = useDispatch();
   function activeItem(
-    submenuList: IDropDown[] | undefined,
+    submenuList: TDropDown[] | undefined,
     activeItemIndex: number,
     activeItemName: string
   ) {

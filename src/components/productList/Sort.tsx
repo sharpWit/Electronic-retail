@@ -35,7 +35,7 @@ const Sort: React.FC<Props> = ({
                     : "text-palette-mute/80 hover:text-palette-base transition-all"
                 }`}
               >
-                رویۀ بازگرداندن کالا
+                {[radioInput]}
               </label>
               <input
                 type="radio"

@@ -1,7 +1,7 @@
+import { TActiveMenuItem } from "@/types/activeMenuItem ";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IActiveMenuItem } from "../lib/types/activeMenuItem";
 
-const initialState: IActiveMenuItem = {
+const initialState: TActiveMenuItem = {
   activeMenuItemIndex: 0,
   activeMenuItemText: "",
 };

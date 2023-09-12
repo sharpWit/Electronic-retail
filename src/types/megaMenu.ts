@@ -1,7 +1,7 @@
-export interface IMegaMenuShow {
+export type TMegaMenuShow = {
   isMegaMenuOpen: boolean;
-}
+};
 
-export interface IMegaMenuRootState {
-  megaMenu: IMegaMenuShow;
-}
+export type TMegaMenuRootState = {
+  megaMenu: TMegaMenuShow;
+};

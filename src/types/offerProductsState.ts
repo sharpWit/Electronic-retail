@@ -1,5 +1,5 @@
-import { IProduct } from "./products";
+import { TProduct } from "./products";
 
-export interface IOfferProducts {
-  specialOfferProducts: IProduct[] | [];
-}
+export type TOfferProducts = {
+  specialOfferProducts: TProduct[] | [];
+};

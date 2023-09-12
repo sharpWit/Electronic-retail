@@ -2,12 +2,12 @@ import Breadcrumb from "../UI/Breadcrumb";
 import ImageSection from "./ImageSection";
 import DetailsSection from "./DetailsSection";
 import SimilarProducts from "./SimilarProducts";
-import { IProduct } from "@/types/products ";
+import { TProduct } from "@/types/products ";
 import Benefits from "../Benefits/Benefits";
 
 interface Props {
-  product: IProduct;
-  products: IProduct[];
+  product: TProduct;
+  products: TProduct[];
 }
 const ProductDetails: React.FC<Props> = ({ product, products }) => {
   const similarProductsList = products

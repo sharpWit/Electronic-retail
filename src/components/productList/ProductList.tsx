@@ -1,22 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-import SubmenuCategory from "./SubmenuCategory";
-
-import Breadcrumb from "../UI/Breadcrumb";
-import Sort from "./Sort";
-import { useDispatch, useSelector } from "react-redux";
-import { IProduct } from "@/types/products ";
-import { SortedProductsListActions } from "@/store/sortedProductList-slice ";
-import { IProductListRootState } from "@/types/productList ";
-import Card from "../UI/card/Card";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SortedProductsListActions } from "@/store/sortedProductList-slice ";
+import Sort from "./Sort";
+import Card from "../UI/card/Card";
+import { TProduct } from "@/types/products ";
+import { TProductListRootState } from "@/types/productList ";
+import Spinner from "../UI/Spinner";
 
-interface Props {
-  productList: IProduct[];
-}
-const ProductList: React.FC<Props> = ({ productList }) => {
+type Props = {
+  products: TProduct[];
+};
+
+const ProductList: React.FC<Props> = ({ products }) => {
   const pathName = usePathname();
   let isInNewestProductsPage = pathName === "/newestProducts" ? true : false;
 
@@ -26,14 +24,14 @@ const ProductList: React.FC<Props> = ({ productList }) => {
   useEffect(() => {
     dispatch(
       SortedProductsListActions.sortProductsList({
-        productsList: productList,
+        productsList: products,
         sortBasedOn: selectedRadioBtn,
       })
     );
-  }, [dispatch, productList, selectedRadioBtn]);
+  }, [dispatch, products, selectedRadioBtn]);
 
   const sortedProductList = useSelector(
-    (state: IProductListRootState) => state.sortedProductsList.productsList
+    (state: TProductListRootState) => state.sortedProductsList.productsList
   );
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -41,37 +39,35 @@ const ProductList: React.FC<Props> = ({ productList }) => {
   }
 
   return (
-    <div>
-      <Breadcrumb />
-      <SubmenuCategory />
-      <div className="w-full xl:max-w-[2100px] mx-auto">
-        {isInNewestProductsPage && productList.length ? (
+    <div className="w-full xl:max-w-[2100px] mx-auto">
+      {isInNewestProductsPage && products?.length ? (
+        <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
+          {products
+            ? products.map((product: TProduct) => {
+                return <Card key={product.id} product={product} />;
+              })
+            : null}
+        </div>
+      ) : sortedProductList && sortedProductList.length ? (
+        <div>
+          <Sort
+            selectedBtn={selectedRadioBtn}
+            onChangeSelectedBtn={onChangeHandler}
+          />
           <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-            {productList
-              ? productList.map((product: IProduct) => {
-                  return <Card key={product.slug.current} product={product} />;
-                })
-              : null}
+            {sortedProductList.map((product: TProduct) => {
+              return <Card key={product.id} product={product} />;
+            })}
           </div>
-        ) : sortedProductList && sortedProductList.length ? (
-          <div>
-            <Sort
-              selectedBtn={selectedRadioBtn}
-              onChangeSelectedBtn={onChangeHandler}
-            />
-            <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-              {sortedProductList.map((product: IProduct) => {
-                return <Card key={product.slug.current} product={product} />;
-              })}
-            </div>
-          </div>
-        ) : (
-          <p className="text-palette-mute text-center mt-8">
-            هنوز هیچ محصولی در این دسته وجود ندارد. محصولات جدید به زودی اضافه
-            خواهند شد.
-          </p>
-        )}
-      </div>
+        </div>
+      ) : products ? (
+        <Spinner />
+      ) : (
+        <p className="text-palette-mute text-center mt-8">
+          هنوز هیچ محصولی در این دسته وجود ندارد. محصولات جدید به زودی اضافه
+          خواهند شد.
+        </p>
+      )}
     </div>
   );
 };

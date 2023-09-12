@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { favoriteActions } from "../../store/favorite-slice";
-import { IProduct } from "../../lib/types/products";
-import { IFavoriteRootState } from "../../lib/types/favorite";
 import { RiHeartFill, RiHeartAddLine, RiShareLine } from "react-icons/ri";
+import { TProduct } from "@/types/products ";
+import { TFavoriteRootState } from "@/types/favorite ";
 
 interface Props {
-  product: IProduct;
+  product: TProduct;
 }
 const ProductPageActions: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
   const favoriteItems = useSelector(
-    (state: IFavoriteRootState) => state.favorite.items
+    (state: TFavoriteRootState) => state.favorite.items
   );
   const isInFavorite = favoriteItems.some(
     (item) => item.slug.current === product.slug.current

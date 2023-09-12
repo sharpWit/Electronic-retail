@@ -1,46 +1,49 @@
-import type { NextPage } from "next";
-import ProductList from "../../../components/productList/ProductList";
-import { IProduct } from "@/types/products ";
+import Loading from "@/app/loading ";
+import Breadcrumb from "@/components/UI/Breadcrumb ";
+import ProductList from "@/components/productList/ProductList ";
+import SubmenuSubCategory from "@/components/productList/SubmenuSubCategory ";
+import { TProduct } from "@/types/products ";
+import { Suspense } from "react";
 
-const subCategory: NextPage<{
-  products: IProduct[];
-}> = ({ products }) => {
+const getData = async (category: string, subCategory: string) => {
+  const res = await fetch(
+    `http://localhost:3000/api/products/${category}/${subCategory}`,
+    {
+      cache: "no-store",
+    }
+  );
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+};
+
+type Props = {
+  params: { category: string; subCategory: string };
+};
+
+const SubCategoryPage = async ({ params }: Props) => {
+  const products: TProduct[] = await getData(
+    params.category,
+    params.subCategory
+  );
+
+  const category = params.category;
+  const subCategory = params.subCategory;
+
   return (
     <div>
-      <ProductList productList={products} />
+      <Breadcrumb />
+      <Suspense fallback={<Loading />}>
+        <SubmenuSubCategory cat={category} subCat={subCategory} />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <ProductList products={products} />
+      </Suspense>
     </div>
   );
 };
 
-export default subCategory;
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const query = `*[_type=="product"]{
-//     "category":category[0],
-//     "subCategory":category[1],
-//   }`;
-//   const products = await client.fetch(query);
-//   const paths = products.map((product: ISubCategoryPathsParams) => ({
-//     params: {
-//       category: product.category.toString(),
-//       subCategory: product.subCategory.toString(),
-//     },
-//   }));
-//   return {
-//     fallback: "blocking",
-//     paths,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const subCategory = context.params?.subCategory;
-//   const category = context.params?.category;
-//   const productQuery = `*[_type=='product'&& category[0]=="${category}" && category[1]=="${subCategory}"]`;
-//   const products = await client.fetch(productQuery);
-
-//   return {
-//     props: {
-//       products: products,
-//     },
-//   };
-// };
+export default SubCategoryPage;

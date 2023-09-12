@@ -1,11 +1,11 @@
-import { IProductList } from "@/types/productList ";
-import { IProduct } from "@/types/products ";
+import { TProduct } from "@/types/products ";
+import { TProductList } from "@/types/productList ";
 import { sortByCheapest, sortByExpensive } from "@/utilities/sortByCost ";
 import { sortByPoPularity } from "@/utilities/sortByPopularity ";
 import { newestProductsFn } from "@/utilities/sortByTimeStamp ";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: IProductList = {
+const initialState: TProductList = {
   productsList: [],
 };
 
@@ -15,7 +15,7 @@ const SortedProductsListSlice = createSlice({
   reducers: {
     sortProductsList(
       state,
-      action: PayloadAction<{ productsList: IProduct[]; sortBasedOn: string }>
+      action: PayloadAction<{ productsList: TProduct[]; sortBasedOn: string }>
     ) {
       switch (action.payload.sortBasedOn) {
         case "all":

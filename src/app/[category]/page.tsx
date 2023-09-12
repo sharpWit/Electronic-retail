@@ -1,43 +1,41 @@
+import Breadcrumb from "@/components/UI/Breadcrumb ";
 import ProductList from "@/components/productList/ProductList ";
-import { IProduct } from "@/types/products ";
-import type { NextPage } from "next";
+import SubmenuCategory from "@/components/productList/SubmenuCategory ";
+import { TProduct } from "@/types/products ";
+import { Suspense } from "react";
+import Loading from "../loading";
 
-const categoryPage: NextPage<{
-  products: IProduct[];
-}> = ({ products }) => {
+const getData = async (category: string) => {
+  const res = await fetch(`http://localhost:3000/api/products/${category}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+};
+
+type Props = {
+  params: { category: string };
+};
+
+const CategoryPage = async ({ params }: Props) => {
+  const products: TProduct[] = await getData(params.category);
+  const category = params.category;
+
   return (
     <div>
-      <ProductList productList={products} />
+      <Breadcrumb />
+      <Suspense fallback={<Loading />}>
+        <SubmenuCategory cat={category} />
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        <ProductList products={products} />
+      </Suspense>
     </div>
   );
 };
 
-export default categoryPage;
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const query = `*[_type=="product"]{
-//     "category":category[0]
-//   }`;
-//   const products = await client.fetch(query);
-//   const paths = products.map((product: ICategoryPathsParams) => ({
-//     params: {
-//       category: product.category,
-//     },
-//   }));
-//   return {
-//     fallback: "blocking",
-//     paths,
-//   };
-// };
-
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const category = context.params?.category;
-//   const productQuery = `*[_type=='product'&& category[0]=="${category}"]`;
-//   const products = await client.fetch(productQuery);
-
-//   return {
-//     props: {
-//       products: products,
-//     },
-//   };
-// };
+export default CategoryPage;

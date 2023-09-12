@@ -1,9 +1,9 @@
-import { IProduct } from "./products";
+import { TProduct } from "./products";
 
-export interface IProductList {
-  productsList: IProduct[] | [];
-}
+export type TProductList = {
+  productsList: TProduct[] | [];
+};
 
-export interface IProductListRootState {
-  sortedProductsList: IProductList;
-}
+export type TProductListRootState = {
+  sortedProductsList: TProductList;
+};

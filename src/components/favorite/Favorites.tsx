@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import FavoriteItem from "./FavoriteItem";
-import { IFavoriteRootState } from "@/types/favorite ";
+import { TFavoriteRootState } from "@/types/favorite ";
 
 const Favorites = () => {
   const favoriteItems = useSelector(
-    (state: IFavoriteRootState) => state.favorite.items
+    (state: TFavoriteRootState) => state.favorite.items
   );
   return (
     <div className="w-full xl:max-w-[2100px] mx-auto">

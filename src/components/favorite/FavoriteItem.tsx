@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { favoriteActions } from "../../store/favorite-slice";
 import ProductPrice from "../UI/ProductPrice";
-import { IProduct } from "@/types/products ";
+import { TProduct } from "@/types/products ";
 
 interface Props {
-  product: IProduct;
+  product: TProduct;
 }
 const FavoriteItem: React.FC<Props> = ({ product }) => {
   const { theme } = useTheme();
@@ -21,7 +21,7 @@ const FavoriteItem: React.FC<Props> = ({ product }) => {
     dispatch(favoriteActions.removeFromFavorite(productSlug));
   }
 
-  function onAddToCart(product: IProduct) {
+  function onAddToCart(product: TProduct) {
     dispatch(cartActions.addItemToCart({ product: product, quantity: 1 }));
     toast.success("محصول با موفقیت به سبد خرید اضافه شد", {
       theme: theme === "dark" ? "dark" : "light",

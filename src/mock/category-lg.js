@@ -2,7 +2,7 @@ export const categoryLgContent = [
   {
     name: "digital",
     title: "digitalCategoryTitle",
-    description: "digitalCategoryDescription",
+    description: "digitalCategoryDescription ",
     styles: {
       backgroundColor: "var(--digital-category-bgc)",
       flexDirection: "row",

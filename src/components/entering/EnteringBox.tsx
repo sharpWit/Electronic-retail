@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { IUser } from "@/types/user ";
+import { TUser } from "@/types/user ";
 import Input from "../UI/Input";
 
 interface Props {
   title: string;
-  submitHandler: (user: IUser) => void;
+  submitHandler: (user: TUser) => void;
   errorMessage: string;
 }
 const EnteringBox: React.FC<Props> = ({
@@ -27,7 +27,7 @@ const EnteringBox: React.FC<Props> = ({
   function onSubmitHandler(e: React.FormEvent) {
     e.preventDefault();
     if (passwordRef.current?.value && emailRef.current?.value) {
-      let user: IUser | null = null;
+      let user: TUser | null = null;
       if (userNameRef.current?.value && title === "signUp") {
         user = {
           name: userNameRef.current?.value,

@@ -8,10 +8,10 @@ import { HiOutlinePlusSm, HiMinusSm } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import ProductPrice from "../UI/ProductPrice";
-import { IProduct } from "@/types/products ";
+import { TProduct } from "@/types/products ";
 
 interface Props {
-  product: IProduct;
+  product: TProduct;
 }
 const CallToAction: React.FC<Props> = ({ product }) => {
   const { price, discount } = product;

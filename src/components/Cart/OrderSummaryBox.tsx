@@ -2,14 +2,14 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import ProductPrice from "../UI/ProductPrice";
 import { changeNumbersFormatEnToFa } from "../../utilities/changeNumbersFormatEnToFa";
-import { ICartRootState } from "@/types/cart ";
+import { TCartRootState } from "@/types/cart ";
 
 const OrderSummaryBox = () => {
   const totalAmount = useSelector(
-    (state: ICartRootState) => state.cart.totalAmount
+    (state: TCartRootState) => state.cart.totalAmount
   );
   const totalQuantity = useSelector(
-    (state: ICartRootState) => state.cart.totalQuantity
+    (state: TCartRootState) => state.cart.totalQuantity
   );
 
   return (

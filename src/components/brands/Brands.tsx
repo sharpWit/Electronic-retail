@@ -1,3 +1,5 @@
+"use client";
+
 import BrandBox from "./BrandBox";
 import { brandContent } from "../../mock/brand";
 import Slider from "react-slick";
@@ -39,7 +41,7 @@ const Brands = () => {
   };
   return (
     <div className="p-1 my-4 md:my-8 text-center">
-      <SectionTitle title={"popularBrands"} />
+      <SectionTitle title={"برندهای محبوب"} />
       <Slider {...settings}>
         {brandContent.map((brandItem) => {
           return (

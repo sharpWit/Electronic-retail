@@ -1,7 +1,7 @@
-import { ICartUI } from "@/types/cart ";
+import { TCartUI } from "@/types/cart ";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: ICartUI = {
+const initialState: TCartUI = {
   cartBoxIsVisible: false,
 };
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useExchangeRateGBPToIRR } from "../../hooks/useExchangeRateGBPToIRR";
 import { calculateDiscountPercentage } from "../../utilities/calculateDiscountPercentage";
 import { changeNumbersFormatEnToFa } from "../../utilities/changeNumbersFormatEnToFa";

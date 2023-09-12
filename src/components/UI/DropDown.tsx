@@ -4,11 +4,11 @@ import { HiChevronUp, HiChevronDown } from "react-icons/hi";
 import { Transition } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
-import { IDropDown } from "@/types/dropDown ";
-import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { TDropDown } from "@/types/dropDown ";
+import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
 
 interface Props {
-  dropDown: IDropDown;
+  dropDown: TDropDown;
   ref: React.HTMLProps<HTMLDivElement>;
 }
 const DropDown = forwardRef<HTMLDivElement, Props>(({ dropDown }, ref) => {
@@ -18,7 +18,7 @@ const DropDown = forwardRef<HTMLDivElement, Props>(({ dropDown }, ref) => {
   let ArrowDirection = !openDropdown ? HiChevronDown : HiChevronUp;
 
   const activeMenuItemText = useSelector(
-    (state: IActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
+    (state: TActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
   );
 
   const closeNavbar = () => {

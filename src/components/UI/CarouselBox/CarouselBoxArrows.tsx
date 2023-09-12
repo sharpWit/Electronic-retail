@@ -1,8 +1,8 @@
-interface Props {
+type Props = {
   className?: string;
   style?: any;
   onClick?: () => void;
-}
+};
 export const NextArrow: React.FC<Props> = ({ className, style, onClick }) => {
   return (
     <div

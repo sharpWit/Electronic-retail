@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import Slide from "./Slide";
 import { NextArrow, PrevArrow } from "./Arrows";
 import Spinner from "../UI/Spinner";
-import { getSlider } from "@/app/pages/api/apiSlider ";
+import { getSlider } from "../../server/DB/apiSlider";
 
 const Carousel = () => {
   const {

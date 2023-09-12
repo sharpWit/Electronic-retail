@@ -1,8 +1,8 @@
-import { IProduct } from "@/types/products ";
+import { TProduct } from "@/types/products ";
 import CallToAction from "./CallToAction";
 
 interface Props {
-  product: IProduct;
+  product: TProduct;
 }
 const DetailsSection: React.FC<Props> = ({ product }) => {
   return (

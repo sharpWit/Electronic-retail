@@ -14,11 +14,11 @@ import fa from "./fa";
 
 const menuItems = [
   {
-    category: `${fa.digital}`,
+    category: "کامپیوتر",
     icon: BsLaptop,
     productsGroup: [
       {
-        title: `${fa.laptop}`,
+        title: "قطعات_و_سخت_افزار",
         icon: BsLaptop,
         subtitles: [
           `${fa.asus}`,
@@ -33,7 +33,7 @@ const menuItems = [
         ],
       },
       {
-        title: `${fa.mobile}`,
+        title: "لوازم_جانبی",
         icon: ImMobile,
         subtitles: [
           `${fa.samsung}`,
@@ -68,11 +68,11 @@ const menuItems = [
     ],
   },
   {
-    category: `${fa.fashion}`,
+    category: "تجهیزات_صوت_و_تصویر",
     icon: IoShirtOutline,
     productsGroup: [
       {
-        title: `${fa.women}`,
+        title: "اکستندر_تصویر",
         icon: GiLargeDress,
         subtitles: [
           `${fa.dress}`,
@@ -114,7 +114,29 @@ const menuItems = [
       },
     ],
   },
-  { category: `${fa.toys}`, icon: MdOutlineToys },
+  {
+    category: "تجهیزات_شبکه",
+    icon: MdOutlineToys,
+    productsGroup: [
+      {
+        title: "روتر_و_اکسس‌_پوینت",
+        icon: GiLargeDress,
+        subtitles: [`${fa.dress}`, `${fa.skirt}`],
+      },
+      {
+        title: `${fa.men}`,
+        icon: IoShirtSharp,
+        subtitles: [
+          `${fa.shirt}`,
+          `${fa.pants}`,
+          `${fa.tie}`,
+          `${fa.tShirt}`,
+          `${fa.shoes}`,
+          `${fa.jeans}`,
+        ],
+      },
+    ],
+  },
   { category: `${fa.cosmetic}`, icon: RiHeartPulseLine },
   { category: `${fa.home}`, icon: AiOutlineHome },
   { category: `${fa.sport}`, icon: BiFootball },

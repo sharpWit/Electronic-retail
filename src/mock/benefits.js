@@ -1,19 +1,19 @@
 export const benefitContent = [
   {
     imgSrc: "/images/benefit-icons/005-delivery-truck-2.webp",
-    title: "deliver",
+    title: "تحویل سریع",
   },
   {
     imgSrc: "/images/benefit-icons/003-cash-on-delivery.webp",
-    title: "cash",
+    title: "پرداخت در محل",
   },
   {
     imgSrc: "/images/benefit-icons/004-headphones.webp",
-    title: "support",
+    title: "پشتیبانی ۲۴/۷",
   },
   {
     imgSrc: "/images/benefit-icons/006-best-seller.webp",
-    title: "warrantyBenefit",
+    title: "ضمانت اصل بودن کالا",
   },
   // {
   //   imgSrc: "/images/benefit-icons/007-return.png",

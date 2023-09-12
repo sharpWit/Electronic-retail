@@ -1,6 +1,6 @@
 import React, { useImperativeHandle, useRef, useState } from "react";
 
-interface Props {
+type Props = {
   id: string;
   type: string;
   minLength?: number;
@@ -13,13 +13,13 @@ interface Props {
   autocomplete?: string;
   title?: string;
   required?: boolean;
-}
+};
 
-interface IImperativeHandler {
+type TImperativeHandler = {
   focus: () => void;
   value?: string;
-}
-const Input = React.forwardRef<IImperativeHandler, Props>((props, ref) => {
+};
+const Input = React.forwardRef<TImperativeHandler, Props>((props, ref) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [value, setValue] = useState(props.value || "");
 

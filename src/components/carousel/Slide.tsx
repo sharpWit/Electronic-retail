@@ -1,12 +1,12 @@
 import Link from "next/link";
 
-interface Props {
+type Props = {
   ID?: number;
   title: string;
   description: string;
   bgImg: string;
   url: string;
-}
+};
 const Slide: React.FC<Props> = ({ title, description, bgImg, url }) => {
   return (
     <>

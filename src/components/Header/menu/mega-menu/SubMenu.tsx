@@ -2,18 +2,18 @@ import Link from "next/link";
 import { HiChevronLeft } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { megaMenuActions } from "@/store/megaMenu-slice ";
-import { IDropDown } from "@/types/dropDown ";
-import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { TDropDown } from "@/types/dropDown ";
+import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
 
 interface Props {
-  subMenuItems: IDropDown[] | undefined;
+  subMenuItems: TDropDown[] | undefined;
 }
 const SubMenu: React.FC<Props> = ({ subMenuItems }) => {
   const ArrowDirection = HiChevronLeft;
   const dispatch = useDispatch();
 
   const activeMenuItemText = useSelector(
-    (state: IActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
+    (state: TActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
   );
 
   return (

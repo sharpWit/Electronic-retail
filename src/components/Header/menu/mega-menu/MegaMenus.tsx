@@ -5,7 +5,7 @@ import { IoMenu } from "react-icons/io5";
 import { Transition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
 import { megaMenuActions } from "@/store/megaMenu-slice ";
-import { IMegaMenuRootState } from "@/types/megaMenu ";
+import { TMegaMenuRootState } from "@/types/megaMenu ";
 import MenusContainer from "./MenusContainer";
 
 const MegaMenus = () => {
@@ -19,7 +19,7 @@ const MegaMenus = () => {
     dispatch(megaMenuActions.closeMegaMenu());
   }
   const isMegaMenuOpen = useSelector(
-    (state: IMegaMenuRootState) => state.megaMenu.isMegaMenuOpen
+    (state: TMegaMenuRootState) => state.megaMenu.isMegaMenuOpen
   );
 
   return (

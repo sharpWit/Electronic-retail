@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 Date.prototype.addDays = function (days: number): Date {

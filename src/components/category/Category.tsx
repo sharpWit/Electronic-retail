@@ -3,22 +3,37 @@ import CategoryLgBox from "./CategoryLgBox";
 import SectionTitle from "../UI/SectionTitle";
 import { categorySmContent } from "../../mock/category-sm";
 import { categoryLgContent } from "../../mock/category-lg";
+import { TCategories } from "./type";
 
-const Category = () => {
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/categories", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+};
+
+const Category = async () => {
+  const categories: TCategories[] = await getData();
+
   return (
     <div className="flex flex-col items-center my-4 md:my-8">
-      <SectionTitle title={"CategoryOfGoods"} />
+      <SectionTitle title={"دسته‌بندی کالا‌ها"} />
 
       {/* 📱 sm and md break point */}
       <div className="flex flex-wrap justify-around items-center lg:hidden">
-        {categorySmContent.map((categoryItem) => {
+        {categories.map((cat) => {
           return (
             <CategorySmBox
-              bgc={categoryItem.bgc}
-              imgSrc={categoryItem.imgSrc}
-              categoryTitle={categoryItem.categoryTitle}
-              href={categoryItem.href}
-              key={categoryItem.categoryTitle}
+              key={cat.id}
+              name={cat.name}
+              title={cat.title}
+              imgSrc={cat.imgSrc}
+              href={cat.href}
             />
           );
         })}
@@ -26,32 +41,20 @@ const Category = () => {
 
       {/* 💻lg break point */}
       <div className="hidden lg:grid  gap-4 grid-rows-9 grid-cols-2 md:grid-cols-9 w-full xl:max-w-[2100px] mx-auto">
-        {categoryLgContent.map(
-          ({
-            name,
-            title,
-            description,
-            styles,
-            href,
-            imgSrc,
-            imgWidth,
-            imgHeight,
-          }) => {
-            return (
-              <CategoryLgBox
-                key={name}
-                name={name}
-                title={title}
-                description={description}
-                styles={styles}
-                href={href}
-                imgSrc={imgSrc}
-                imgWidth={imgWidth}
-                imgHeight={imgHeight}
-              />
-            );
-          }
-        )}
+        {categories.map((cat) => {
+          return (
+            <CategoryLgBox
+              key={cat.id}
+              title={cat.title}
+              desc={cat.desc}
+              imgSrc={cat.imgSrc}
+              imgWidth={cat.imgWidth}
+              imgHeight={cat.imgHeight}
+              styles={cat.styles}
+              href={cat.href}
+            />
+          );
+        })}
       </div>
     </div>
   );
