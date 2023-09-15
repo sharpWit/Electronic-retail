@@ -1,17 +1,17 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import { BsCartPlus } from "react-icons/bs";
+import { useTheme } from "next-themes";
 import { HiOutlinePlusSm, HiMinusSm } from "react-icons/hi";
+import { BsCartPlus } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import ProductPrice from "../UI/ProductPrice";
-import { TProduct } from "@/types/products ";
+import { toast } from "react-toastify";
+import { IProduct } from "@/types/products ";
 
 interface Props {
-  product: TProduct;
+  product: IProduct;
 }
 const CallToAction: React.FC<Props> = ({ product }) => {
   const { price, discount } = product;
@@ -56,7 +56,7 @@ const CallToAction: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div className="flex flex-col items-center flex-grow sticky top-10 md:top-36 max-w-[350px] mt-8 rtl:mr-auto xl:rtl:ml-2 px-6 py-4 sm:p-4 xl:p-6 border-2 shadow-lg">
+    <div className="flex flex-col items-center flex-grow sticky top-10 md:top-36 max-w-[350px] mt-8 rtl:mr-auto ltr:ml-auto xl:rtl:ml-2 px-6 py-4 sm:p-4 xl:p-6 border-2 shadow-lg">
       <div className="flex flex-col w-full ">
         <p className="text-lg">قیمت محصول</p>
         <ProductPrice price={price} discount={discount} isLargeSize={true} />
@@ -66,7 +66,7 @@ const CallToAction: React.FC<Props> = ({ product }) => {
           <HiOutlinePlusSm style={{ fontSize: "1.5rem" }} />
         </div>
         <input
-          className="inline-block w-[70px] rtl:pr-8 py-2 mx-1 sm:mx-4 border-[1px] border-gray-400"
+          className="inline-block w-[70px] rtl:pr-8 ltr:pl-7 py-2 mx-1 sm:mx-4 border-[1px] border-gray-400"
           type="number"
           min={1}
           max={10}

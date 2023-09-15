@@ -1,15 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import ProductPrice from "../UI/ProductPrice";
 import { changeNumbersFormatEnToFa } from "../../utilities/changeNumbersFormatEnToFa";
-import { TCartRootState } from "@/types/cart ";
+import { ICartRootState } from "@/types/cart ";
 
 const OrderSummaryBox = () => {
   const totalAmount = useSelector(
-    (state: TCartRootState) => state.cart.totalAmount
+    (state: ICartRootState) => state.cart.totalAmount
   );
   const totalQuantity = useSelector(
-    (state: TCartRootState) => state.cart.totalQuantity
+    (state: ICartRootState) => state.cart.totalQuantity
   );
 
   return (
@@ -22,7 +24,7 @@ const OrderSummaryBox = () => {
               <p className="text-sm sm:text-base text-palette-mute md:text-palette-base">
                 تعداد کل کالا‌ها
               </p>
-              <p className="rtl:ml-1 font-bold">
+              <p className="rtl:ml-1 ltr:mr-1 font-bold">
                 {changeNumbersFormatEnToFa(totalQuantity)}
               </p>
             </div>

@@ -1,25 +1,27 @@
 import ProductList from "@/components/productList/ProductList ";
-import { TProduct } from "@/types/products ";
-import type { NextPage } from "next";
+import { IProduct } from "@/types/products ";
 
-const offers: NextPage<{
-  products: TProduct[];
-}> = ({ products }) => {
+const getData = async () => {
+  const res = await fetch("http://localhost:3000/api/products/offers/", {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("Failed!");
+  }
+
+  return res.json();
+};
+
+const Offers = async () => {
+  const offersProducts: IProduct[] = await getData();
+
   return (
     <div>
-      <ProductList productList={products} />
+      {offersProducts?.length ? (
+        <ProductList productList={offersProducts} />
+      ) : null}
     </div>
   );
 };
 
-export default offers;
-
-// export const getStaticProps: GetStaticProps = async () => {
-//   const productQuery = `*[_type=='product'&& isOffer==true]`;
-//   const products = await client.fetch(productQuery);
-//   return {
-//     props: {
-//       products: products,
-//     },
-//   };
-// };
+export default Offers;

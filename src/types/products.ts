@@ -1,34 +1,4 @@
-// export type TSlug = {
-//   _type: string;
-//   current: string;
-// };
-
-// export type TImage = {
-//   _key: string;
-//   _type: "image";
-//   asset: {
-//     _ref: string;
-//     _type: "reference";
-//   };
-// };
-
-// export type IProduct {
-//   id: number;
-//   image: any;
-//   name: string;
-//   slug: TSlug;
-//   price: number;
-//   discount?: number;
-//   details?: IProductDetails[];
-//   brand: string;
-//   category: string[];
-//   isOffer?: boolean;
-//   registerDate?: string;
-//   timeStamp?: number;
-//   starRating: number;
-// }
-
-export interface TProduct {
+export interface IProduct {
   id: string;
   created_at?: string;
   modified_at?: string;
@@ -36,18 +6,27 @@ export interface TProduct {
   title: string;
   enTitle: string;
   desc?: string;
-  img: string;
+  img: string[];
   price: number;
   isOffer?: boolean;
   discount?: number;
-  rate?: number;
+  rate: number;
   slug: string;
   subSlug: string;
   groupTitle: string;
-  brand: TBrand;
-  details?: TProductDetails[];
+  brand: IBrand;
+  details?: IProductDetails[];
 }
-export interface TProductDetails {
+
+export interface IImage {
+  _key: string;
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+}
+export interface IProductDetails {
   size?: string;
   weight?: string;
   color?: string;
@@ -56,7 +35,7 @@ export interface TProductDetails {
   bluetooth?: boolean;
 }
 
-export interface TBrand {
+export interface IBrand {
   id: number;
   name: string;
   desc: string;

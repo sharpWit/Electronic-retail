@@ -1,5 +1,5 @@
-import { prisma } from "@/utilities/connect ";
 import { NextResponse } from "next/server";
+import { prisma } from "@/utilities/connect ";
 
 // FETCH ALL PRODUCTS
 export const GET = async (

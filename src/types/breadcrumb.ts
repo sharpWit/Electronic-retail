@@ -1,4 +1,4 @@
-export type TBreadcrumb = {
+export interface IBreadcrumb {
   breadcrumb: string;
   href: string;
-};
+}

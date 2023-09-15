@@ -6,15 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { SortedProductsListActions } from "@/store/sortedProductList-slice ";
 import Sort from "./Sort";
 import Card from "../UI/card/Card";
-import { TProduct } from "@/types/products ";
-import { TProductListRootState } from "@/types/productList ";
+import { IProduct } from "@/types/products ";
+import { IProductListRootState } from "@/types/productList ";
 import Spinner from "../UI/Spinner";
 
 type Props = {
-  products: TProduct[];
+  productList: IProduct[];
 };
 
-const ProductList: React.FC<Props> = ({ products }) => {
+const ProductList: React.FC<Props> = ({ productList: products }) => {
   const pathName = usePathname();
   let isInNewestProductsPage = pathName === "/newestProducts" ? true : false;
 
@@ -31,7 +31,7 @@ const ProductList: React.FC<Props> = ({ products }) => {
   }, [dispatch, products, selectedRadioBtn]);
 
   const sortedProductList = useSelector(
-    (state: TProductListRootState) => state.sortedProductsList.productsList
+    (state: IProductListRootState) => state.sortedProductsList.productsList
   );
 
   function onChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -43,7 +43,7 @@ const ProductList: React.FC<Props> = ({ products }) => {
       {isInNewestProductsPage && products?.length ? (
         <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
           {products
-            ? products.map((product: TProduct) => {
+            ? products.map((product: IProduct) => {
                 return <Card key={product.id} product={product} />;
               })
             : null}
@@ -55,7 +55,7 @@ const ProductList: React.FC<Props> = ({ products }) => {
             onChangeSelectedBtn={onChangeHandler}
           />
           <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12">
-            {sortedProductList.map((product: TProduct) => {
+            {sortedProductList.map((product: IProduct) => {
               return <Card key={product.id} product={product} />;
             })}
           </div>

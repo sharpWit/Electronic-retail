@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import CartIcon from "../Cart/CartIcon";
+import CartIcon from "../cart/CartIcon";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import Menu from "./menu/Menu";

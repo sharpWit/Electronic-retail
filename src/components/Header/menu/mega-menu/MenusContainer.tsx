@@ -1,16 +1,18 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { activeMenuItemActions } from "@/store/activeMenuItem-slice ";
 import SubMenu from "./SubMenu";
 import MenuItems from "@/components/UI/MenuItems/MenuItems ";
-import { TDropDown } from "@/types/dropDown ";
+import { IDropDown } from "@/types/dropDown ";
 import menuItems from "@/mock/menuItems ";
 
 const MenusContainer = () => {
-  const [subMenuItems, setSubMenuItems] = useState<TDropDown[]>();
+  const [subMenuItems, setSubMenuItems] = useState<IDropDown[]>();
   const dispatch = useDispatch();
   function activeItem(
-    submenuList: TDropDown[] | undefined,
+    submenuList: IDropDown[] | undefined,
     activeItemIndex: number,
     activeItemName: string
   ) {

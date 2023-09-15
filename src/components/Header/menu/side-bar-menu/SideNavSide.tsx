@@ -6,23 +6,23 @@ import { HiOutlineArrowSmRight, HiChevronLeft } from "react-icons/hi";
 import { Transition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
-import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
-import { TSideNavBarRootState } from "@/types/sidebar ";
+import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { ISideNavBarRootState } from "@/types/sidebar ";
 import DropDown from "@/components/UI/DropDown ";
 
 const SideNavSide = () => {
   const dispatch = useDispatch();
 
   const dropDownList = useSelector(
-    (state: TSideNavBarRootState) => state.sideNavBar.dropDownList
+    (state: ISideNavBarRootState) => state.sideNavBar.dropDownList
   );
 
   const isSidebarOpen = useSelector(
-    (state: TSideNavBarRootState) => state.sideNavBar.isSidebarOpen
+    (state: ISideNavBarRootState) => state.sideNavBar.isSidebarOpen
   );
 
   const activeMenuItemText = useSelector(
-    (state: TActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
+    (state: IActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
   );
 
   const closeSidebar = () => {

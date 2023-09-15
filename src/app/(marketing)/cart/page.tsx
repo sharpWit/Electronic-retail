@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
-import CartList from "@/components/Cart/CartList ";
-import OrderSummaryBox from "@/components/Cart/OrderSummaryBox ";
 import Breadcrumb from "@/components/UI/Breadcrumb ";
+import CartList from "@/components/cart/CartList ";
+import OrderSummaryBox from "@/components/cart/OrderSummaryBox ";
 
 const cart: NextPage = () => {
   return (

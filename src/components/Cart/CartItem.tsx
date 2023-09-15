@@ -5,24 +5,23 @@ import Link from "next/link";
 import { useState } from "react";
 import { HiMinusSm, HiOutlinePlusSm, HiOutlineTrash } from "react-icons/hi";
 import { useSelector, useDispatch } from "react-redux";
-import { cartActions } from "@/store/cart-slice ";
-import { TCartRootState } from "@/types/cart ";
-import { TProduct } from "@/types/products ";
+import { cartActions } from "../../store/cart-slice";
+import ProductPrice from "../UI/ProductPrice";
+import { ICartRootState } from "@/types/cart ";
+import { IProduct } from "@/types/products ";
 
 interface Props {
-  product: TProduct;
+  product: IProduct;
 }
 const CartItem: React.FC<Props> = ({ product }) => {
   const productQuantity = useSelector(
-    (state: TCartRootState) =>
-      state.cart.items.find(
-        (item) => item.slug.current === product.slug.current
-      )?.quantity
+    (state: ICartRootState) =>
+      state.cart.items.find((item) => item.slug === product.slug)?.quantity
   );
   const [counter, setCounter] = useState(productQuantity);
   const dispatch = useDispatch();
 
-  function increment(product: TProduct) {
+  function increment(product: IProduct) {
     setCounter((prev) => ++prev!);
     dispatch(cartActions.addItemToCart({ product: product, quantity: 1 }));
   }
@@ -41,25 +40,25 @@ const CartItem: React.FC<Props> = ({ product }) => {
     <div className="flex items-center flex-wrap sm:my-4 sm:py-4 px-2 border-b-2">
       <div className="lg:w-1/2 sm:min-w-[290px]">
         <Link
-          href={`/${product.category[0]}/${product.category[1]}/${product.category[2]}/${product.slug.current}`}
-          className="flex flex-wrap sm:flex-nowrap justify-center items-center flex-grow"
+          href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
         >
-          <div className="sm:min-w-[100px] md:min-w-[130px]">
-            <Image
-              // src={urlFor(product?.image[0]).url()}
-              src="https://zanwwduqspdzzgkgqsmz.supabase.co/storage/v1/object/public/product-images/product-sample%20(1).jpg"
-              width={200}
-              height={200}
-              alt={product.name}
-              className="object-contain"
-            />
-          </div>
-          <div
-            className="flex-grow text-sm font-normal mb-2 sm:mb-0 mx-2 w-full"
-            style={{ direction: "rtl" }}
-          >
-            {product.name}
-          </div>
+          <a className="flex flex-wrap sm:flex-nowrap justify-center items-center flex-grow">
+            <div className="sm:min-w-[100px] md:min-w-[130px]">
+              <Image
+                src={product.img[0]}
+                width={200}
+                height={200}
+                alt={product.title}
+                className="object-contain"
+              />
+            </div>
+            <div
+              className="flex-grow text-sm font-normal mb-2 sm:mb-0 mx-2 w-full"
+              style={{ direction: "rtl" }}
+            >
+              {product.title}
+            </div>
+          </a>
         </Link>
       </div>
       <div className="flex flex-wrap flex-grow md:items-center mb-4 sm:mb-0">
@@ -69,7 +68,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
               <HiOutlinePlusSm style={{ fontSize: "1rem" }} />
             </div>
             <input
-              className="inline-block w-[65px] rtl:pr-7 py-2 mx-1 border-[1px] border-gray-400"
+              className="inline-block w-[65px] rtl:pr-7 ltr:pl-7 py-2 mx-1 border-[1px] border-gray-400"
               type="number"
               min={1}
               max={10}
@@ -77,17 +76,11 @@ const CartItem: React.FC<Props> = ({ product }) => {
               onChange={onInputNumberChangeHandler}
             />
             {counter === 1 ? (
-              <div
-                onClick={() => decrement(product.slug.current)}
-                className="p-1"
-              >
+              <div onClick={() => decrement(product.slug)} className="p-1">
                 <HiOutlineTrash style={{ fontSize: "1.3rem", color: "red" }} />
               </div>
             ) : (
-              <div
-                onClick={() => decrement(product.slug.current)}
-                className="p-1"
-              >
+              <div onClick={() => decrement(product.slug)} className="p-1">
                 <HiMinusSm style={{ fontSize: "1rem" }} />
               </div>
             )}
@@ -95,10 +88,10 @@ const CartItem: React.FC<Props> = ({ product }) => {
         </div>
         <div className="flex flex-col flex-grow font-normal rtl:mr-1 lrt:ml-1">
           <p>قیمت کل</p>
-          {/* <ProductPrice
+          <ProductPrice
             price={product.price * counter!}
             discount={product.discount}
-          /> */}
+          />
         </div>
       </div>
     </div>

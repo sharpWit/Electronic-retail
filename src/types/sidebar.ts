@@ -1,11 +1,11 @@
-import { TDropDown } from "./dropDown";
+import { IDropDown } from "./dropDown";
 
-export type TSideNavBar = {
+export interface ISideNavBar {
   isSidebarOpen: boolean;
   isNavbarOpen: boolean;
-  dropDownList: TDropDown[];
-};
+  dropDownList: IDropDown[];
+}
 
-export type TSideNavBarRootState = {
-  sideNavBar: TSideNavBar;
-};
+export interface ISideNavBarRootState {
+  sideNavBar: ISideNavBar;
+}

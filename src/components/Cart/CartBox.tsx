@@ -1,27 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import { cartUiActions } from "@/store/cartUI-slice ";
-import { useExchangeRateGBPToIRR } from "@/hooks/useExchangeRateGBPToIRR ";
-import { changeNumbersFormatEnToFa } from "@/utilities/changeNumbersFormatEnToFa ";
+import { cartUiActions } from "../../store/cartUI-slice";
+import { useExchangeRateGBPToIRR } from "../../hooks/useExchangeRateGBPToIRR";
 import CartItem from "./CartItem";
-import { TCartRootState } from "@/types/cart ";
-import { TUserInfoRootState } from "@/types/user ";
+import { changeNumbersFormatEnToFa } from "../../utilities/changeNumbersFormatEnToFa";
+import { ICartRootState } from "@/types/cart ";
+import { IUserInfoRootState } from "@/types/user ";
 
 const CartBox = () => {
   const dispatch = useDispatch();
 
   const cartItemQuantity = useSelector(
-    (state: TCartRootState) => state.cart.totalQuantity
+    (state: ICartRootState) => state.cart.totalQuantity
   );
 
   const cartTotalAmount = useSelector(
-    (state: TCartRootState) => state.cart.totalAmount
+    (state: ICartRootState) => state.cart.totalAmount
   );
 
-  const cartItems = useSelector((state: TCartRootState) => state.cart.items);
+  const cartItems = useSelector((state: ICartRootState) => state.cart.items);
 
   const userInfo = useSelector(
-    (state: TUserInfoRootState) => state.userInfo.userInformation
+    (state: IUserInfoRootState) => state.userInfo.userInformation
   );
 
   function onCloseCartBoxHandler() {
@@ -31,7 +33,7 @@ const CartBox = () => {
   const irPrice = useExchangeRateGBPToIRR(cartTotalAmount);
 
   return (
-    <div className="hidden lg:flex flex-col absolute top-full rtl:left-0 min-h-[15rem] max-h-[25rem] w-[20rem] bg-palette-card z-[110] shadow-md rounded-lg overflow-auto">
+    <div className="hidden lg:flex flex-col absolute top-full rtl:left-0 ltr:right-0 min-h-[15rem] max-h-[25rem] w-[20rem] bg-palette-card z-[110] shadow-md rounded-lg overflow-auto">
       <div className="relative">
         <header className="flex items-center justify-between sticky top-0 left-0 right-0 text-sm font-normal z-10 bg-palette-card p-2">
           <span>
@@ -49,7 +51,7 @@ const CartBox = () => {
           <>
             {cartItems.length ? (
               cartItems.map((item) => {
-                return <CartItem key={item.slug.current} product={item} />;
+                return <CartItem key={item.slug} product={item} />;
               })
             ) : (
               <p className="mt-20 text-center text-palette-mute font-normal">
@@ -60,7 +62,7 @@ const CartBox = () => {
         </div>
         {cartItems.length ? (
           <div className="flex items-center sticky bottom-0 left-0 right-0 bg-palette-card font-normal py-3 px-4">
-            <div className="flex flex-col flex-grow rtl:ml-2">
+            <div className="flex flex-col flex-grow ltr:mr-2 rtl:ml-2">
               <p className="text-sm">مبلغ قابل پرداخت</p>
               <p className="self-end text-sm font-bold">{`تومان ${irPrice}`}</p>
             </div>

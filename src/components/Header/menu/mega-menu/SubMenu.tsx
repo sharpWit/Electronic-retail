@@ -1,19 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import { HiChevronLeft } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
 import { megaMenuActions } from "@/store/megaMenu-slice ";
-import { TDropDown } from "@/types/dropDown ";
-import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { IDropDown } from "@/types/dropDown ";
+import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
 
 interface Props {
-  subMenuItems: TDropDown[] | undefined;
+  subMenuItems: IDropDown[] | undefined;
 }
 const SubMenu: React.FC<Props> = ({ subMenuItems }) => {
   const ArrowDirection = HiChevronLeft;
   const dispatch = useDispatch();
 
   const activeMenuItemText = useSelector(
-    (state: TActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
+    (state: IActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
   );
 
   return (

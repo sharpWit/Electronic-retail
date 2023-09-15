@@ -1,3 +1,5 @@
+"use client";
+
 import { SetStateAction, useState } from "react";
 import Star from "./Star";
 

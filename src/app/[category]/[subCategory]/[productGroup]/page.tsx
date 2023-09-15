@@ -1,8 +1,8 @@
+import { Suspense } from "react";
 import Loading from "@/app/loading ";
 import Breadcrumb from "@/components/UI/Breadcrumb ";
 import ProductList from "@/components/productList/ProductList ";
-import { TProduct } from "@/types/products ";
-import { Suspense } from "react";
+import { IProduct } from "@/types/products ";
 
 const getData = async (
   category: string,
@@ -28,7 +28,7 @@ type Props = {
 };
 
 const SubCategoryPage = async ({ params }: Props) => {
-  const products: TProduct[] = await getData(
+  const products: IProduct[] = await getData(
     params.category,
     params.subCategory,
     params.productGroup
@@ -38,7 +38,7 @@ const SubCategoryPage = async ({ params }: Props) => {
     <div>
       <Breadcrumb />
       <Suspense fallback={<Loading />}>
-        <ProductList products={products} />
+        <ProductList productList={products} />
       </Suspense>
     </div>
   );
