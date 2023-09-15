@@ -1,26 +1,25 @@
-import React from "react";
+"use client";
+
 import { useSelector, useDispatch } from "react-redux";
 import { favoriteActions } from "../../store/favorite-slice";
 import { RiHeartFill, RiHeartAddLine, RiShareLine } from "react-icons/ri";
-import { TProduct } from "@/types/products ";
-import { TFavoriteRootState } from "@/types/favorite ";
+import { IProduct } from "@/types/products ";
+import { IFavoriteRootState } from "@/types/favorite ";
 
 interface Props {
-  product: TProduct;
+  product: IProduct;
 }
 const ProductPageActions: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
   const favoriteItems = useSelector(
-    (state: TFavoriteRootState) => state.favorite.items
+    (state: IFavoriteRootState) => state.favorite.items
   );
-  const isInFavorite = favoriteItems.some(
-    (item) => item.slug.current === product.slug.current
-  );
+  const isInFavorite = favoriteItems.some((item) => item.slug === product.slug);
   let FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine;
   function toggleFavoriteHandler() {
     !isInFavorite
       ? dispatch(favoriteActions.addToFavorite(product))
-      : dispatch(favoriteActions.removeFromFavorite(product.slug.current));
+      : dispatch(favoriteActions.removeFromFavorite(product.slug));
   }
   return (
     <div className=" py-4 -mt-6 flex flex-col justify-evenly absolute top-0 ltr:left-0 rtl:right-0 md:static rounded-lg z-10">

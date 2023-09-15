@@ -1,9 +1,9 @@
-import Breadcrumb from "@/components/UI/Breadcrumb ";
-import ProductList from "@/components/productList/ProductList ";
-import SubmenuCategory from "@/components/productList/SubmenuCategory ";
-import { TProduct } from "@/types/products ";
 import { Suspense } from "react";
 import Loading from "../loading";
+import SubmenuCategory from "@/components/productList/SubmenuCategory ";
+import ProductList from "@/components/productList/ProductList ";
+import Breadcrumb from "@/components/UI/Breadcrumb ";
+import { IProduct } from "@/types/products ";
 
 const getData = async (category: string) => {
   const res = await fetch(`http://localhost:3000/api/products/${category}`, {
@@ -22,7 +22,7 @@ type Props = {
 };
 
 const CategoryPage = async ({ params }: Props) => {
-  const products: TProduct[] = await getData(params.category);
+  const products: IProduct[] = await getData(params.category);
   const category = params.category;
 
   return (
@@ -32,7 +32,7 @@ const CategoryPage = async ({ params }: Props) => {
         <SubmenuCategory cat={category} />
       </Suspense>
       <Suspense fallback={<Loading />}>
-        <ProductList products={products} />
+        <ProductList productList={products} />
       </Suspense>
     </div>
   );

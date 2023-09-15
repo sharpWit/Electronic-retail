@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import ProductPageActions from "./ProductPageActions";
-import { TProduct, TImage } from "@/types/products ";
+import { IImage, IProduct } from "@/types/products ";
 
 interface Props {
-  imgArray: TImage[];
-  product: TProduct;
+  imgArray: IImage[];
+  product: IProduct;
 }
 const ImageSection: React.FC<Props> = ({ imgArray, product }) => {
   const [selectedImg, setSelectedImg] = useState(0);
@@ -18,18 +18,18 @@ const ImageSection: React.FC<Props> = ({ imgArray, product }) => {
     <div className="flex items-start rounded-lg w-full md:w-auto">
       <ProductPageActions product={product} />
       <div className="flex flex-col items-center w-full md:w-auto">
-        <div className="flex flex-grow md:rtl:ml-3">
-          {/* <Image
-            src={urlFor(imgArray[selectedImg]).url()}
+        <div className="flex flex-grow md:ltr:mr-3 md:rtl:ml-3">
+          <Image
+            src={product.img[0]}
             alt="product img"
             width={450}
             height={330}
             className="object-contain md:drop-shadow-xl dark:bg-palette-card"
-          /> */}
+          />
         </div>
 
         <div className="flex mt-4  md:p-4 w-full max-w-[350px] overflow-auto">
-          {imgArray.map((imgItem: TImage, index: number) => {
+          {imgArray.map((imgItem: IImage, index: number) => {
             return (
               <div
                 key={imgItem._key}
@@ -40,13 +40,13 @@ const ImageSection: React.FC<Props> = ({ imgArray, product }) => {
                 }`}
                 onClick={() => onClickHandler(index)}
               >
-                {/* <Image
-                  src={urlFor(imgItem).url()}
+                <Image
+                  src={product.img[0]}
                   width={70}
                   height={70}
                   alt="product img"
                   className="object-contain"
-                /> */}
+                />
               </div>
             );
           })}

@@ -9,7 +9,7 @@ const Template = ({ children }: { children: React.ReactNode }) => {
     <>
       <NextNProgress height={7} />
       <Header />
-      <main className="flex-grow  md:mt-40">{children}</main>;
+      <main className="flex-grow  md:mt-40">{children}</main>
       <Footer />
     </>
   );

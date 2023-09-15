@@ -1,30 +1,30 @@
 "use client";
 
-import Link from "next/link";
 import { useSelector } from "react-redux";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
+import Link from "next/link";
 import Card from "../UI/card/Card";
 import SectionTitle from "../UI/SectionTitle";
-import { TProduct } from "@/types/products ";
+import { IProduct } from "@/types/products ";
 
 const Newest = () => {
   const { width } = useWindowDimensions();
   let numProductToShow = width >= 1536 ? 12 : 8;
 
-  const newestProducts: TProduct[] = useSelector(
-    (state: any) => state.newestProductsList?.productsList
+  const newestProducts: IProduct[] = useSelector(
+    (state: any) => state.newestProductsList.productsList
   );
 
   return (
     <div className="mx-auto my-4 md:my-8 flex flex-col xl:max-w-[2130px]">
-      <SectionTitle title={"جدیدترین کالا‌ها"} />
+      <SectionTitle title={"محصولات جدید"} />
 
       <div className="grid gap-4 md:gap-2 grid-cols-6 md:grid-cols-12 ">
         {newestProducts
           ? newestProducts
               .slice(0, numProductToShow)
-              .map((product: TProduct) => {
-                return <Card key={product.name} product={product} />;
+              .map((product: IProduct) => {
+                return <Card key={product.title} product={product} />;
               })
           : null}
       </div>

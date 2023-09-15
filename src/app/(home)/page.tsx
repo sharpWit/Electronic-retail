@@ -1,17 +1,16 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { specialOfferProductsActions } from "@/store/specialOfferProducts-slice ";
+import dynamic from "next/dynamic";
 import Benefits from "@/components/Benefits/Benefits ";
 import Carousel from "@/components/carousel/Carousel ";
-import { newestProductsFn } from "@/utilities/sortByTimeStamp ";
-import { newestProductsActions } from "@/types/newestProduct-slice ";
-import { TProduct } from "@/types/products ";
-import { useQuery } from "@tanstack/react-query";
+import useOferredProducts from "./useOferredProducts";
 import Spinner from "@/components/UI/Spinner ";
+import { newestProductsFn } from "@/utilities/sortByTimeStamp ";
+import { newestProductsActions } from "@/store/newestProduct-slice ";
+import useProducts from "./useProducts";
 
 const Offers = dynamic(() => import("../../components/Offers/Offers"));
 const Category = dynamic(() => import("../../components/category/Category"));
@@ -22,44 +21,34 @@ const Banners = dynamic(() => import("../../components/banners/Banner"), {
 });
 
 const Home = () => {
-  // const {
-  //   isLoading,
-  //   data: products,
-  //   error,
-  // } = useQuery({
-  //   queryKey: ["product"],
-  //   queryFn: getProducts,
-  // });
+  const { products: offeredProducts, isLoading: isLoadingOffered } =
+    useOferredProducts();
+  // const { products, isLoading } = useProducts();
+  const { products, isLoading } = useProducts();
+  const dispatch = useDispatch();
 
-  // const dispatch = useDispatch();
+  useEffect(() => {
+    //add products to offers list
+    if (offeredProducts?.length)
+      dispatch(specialOfferProductsActions.addProducts(offeredProducts));
+    //add products to newest list
+    if (products?.length) {
+      newestProductsFn(products);
+      dispatch(newestProductsActions.addProducts(products));
+    }
+  }, [dispatch, products, offeredProducts]);
 
-  // useEffect(() => {
-  //   //add products to offers list
-  //   const offersProducts = products?.filter((item) => item.discount);
-  //   dispatch(specialOfferProductsActions.addProducts(offersProducts));
-
-  //   //add products to newest list
-  //   const sortedProductsByTimeStamp = newestProductsFn(products);
-  //   dispatch(newestProductsActions.addProducts(sortedProductsByTimeStamp));
-  // }, [dispatch, products]);
-
-  // if (isLoading) return <Spinner />;
+  if (isLoading || isLoadingOffered) return <Spinner />;
 
   return (
     <div>
-      {/* <ul>
-        {products?.map((product) => {
-          return <li key={product.id}>{product.name}</li>;
-        })}
-      </ul> */}
-      {/* <Carousel />
+      <Carousel />
       <Benefits />
       <Offers />
       <Category />
       <Newest />
       <Banners />
-      <Brands /> */}
-      <Category />
+      <Brands />
     </div>
   );
 };

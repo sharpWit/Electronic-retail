@@ -1,15 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { activeMenuItemActions } from "@/store/activeMenuItem-slice ";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
 import MenuItems from "../../../UI/MenuItems/MenuItems";
-import { TDropDown } from "@/types/dropDown ";
+import { IDropDown } from "@/types/dropDown ";
 import { extraMenu } from "@/mock/menuItems ";
 
 const SideNavContent = () => {
   const dispatch = useDispatch();
   const openNav = (
-    sidebarSideContent: TDropDown[] = [],
+    sidebarSideContent: IDropDown[] = [],
     activeItemName: string,
     activeItemIndex: number
   ) => {

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import jsCookie from "js-cookie";
 import { useDispatch } from "react-redux";

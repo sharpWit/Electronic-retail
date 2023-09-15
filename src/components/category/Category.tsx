@@ -1,9 +1,7 @@
 import CategorySmBox from "./CategorySmBox";
 import CategoryLgBox from "./CategoryLgBox";
 import SectionTitle from "../UI/SectionTitle";
-import { categorySmContent } from "../../mock/category-sm";
-import { categoryLgContent } from "../../mock/category-lg";
-import { TCategories } from "./type";
+import { ICategories } from "@/types/categories ";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/categories", {
@@ -18,7 +16,7 @@ const getData = async () => {
 };
 
 const Category = async () => {
-  const categories: TCategories[] = await getData();
+  const categories: ICategories[] = await getData();
 
   return (
     <div className="flex flex-col items-center my-4 md:my-8">

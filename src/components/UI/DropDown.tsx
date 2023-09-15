@@ -1,14 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { useState, forwardRef, useRef } from "react";
 import { HiChevronUp, HiChevronDown } from "react-icons/hi";
 import { Transition } from "react-transition-group";
 import { useSelector, useDispatch } from "react-redux";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
-import { TDropDown } from "@/types/dropDown ";
-import { TActiveMenuItemRootState } from "@/types/activeMenuItem ";
+import { IDropDown } from "@/types/dropDown ";
+import { IActiveMenuItemRootState } from "@/types/activeMenuItem ";
 
 interface Props {
-  dropDown: TDropDown;
+  dropDown: IDropDown;
   ref: React.HTMLProps<HTMLDivElement>;
 }
 const DropDown = forwardRef<HTMLDivElement, Props>(({ dropDown }, ref) => {
@@ -18,7 +20,7 @@ const DropDown = forwardRef<HTMLDivElement, Props>(({ dropDown }, ref) => {
   let ArrowDirection = !openDropdown ? HiChevronDown : HiChevronUp;
 
   const activeMenuItemText = useSelector(
-    (state: TActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
+    (state: IActiveMenuItemRootState) => state.activeMenuItem.activeMenuItemText
   );
 
   const closeNavbar = () => {

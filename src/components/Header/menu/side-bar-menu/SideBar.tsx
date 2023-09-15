@@ -6,13 +6,13 @@ import { Transition } from "react-transition-group";
 import { useDispatch, useSelector } from "react-redux";
 import { sideNavBarActions } from "@/store/sideNavBar-slice ";
 import SideNav from "./SideNav";
-import { TSideNavBarRootState } from "@/types/sidebar ";
+import { ISideNavBarRootState } from "@/types/sidebar ";
 
 const SideBar = () => {
   const nodeRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const isNavbarOpen = useSelector(
-    (state: TSideNavBarRootState) => state.sideNavBar.isNavbarOpen
+    (state: ISideNavBarRootState) => state.sideNavBar.isNavbarOpen
   );
   const closeNav = () => {
     dispatch(sideNavBarActions.closeNavbar());

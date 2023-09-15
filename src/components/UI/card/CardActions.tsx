@@ -3,34 +3,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "next-themes";
 import { cartActions } from "../../../store/cart-slice";
-
+import { favoriteActions } from "../../../store/favorite-slice";
 import {
   RiHeartFill,
   RiHeartAddLine,
   RiShareLine,
   RiShoppingCart2Line,
 } from "react-icons/ri";
-
 import { toast } from "react-toastify";
-import { TProduct } from "@/types/products ";
-import { TFavoriteRootState } from "@/types/favorite ";
-import { favoriteActions } from "@/store/favorite-slice ";
+import { IProduct } from "@/types/products ";
+import { IFavoriteRootState } from "@/types/favorite ";
 
 interface Props {
-  product: TProduct;
+  product: IProduct;
 }
 
 const CardActions: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
   const { theme } = useTheme();
 
-  // const favoriteItems = useSelector(
-  //   (state: TFavoriteRootState) => state.favorite.items
-  // );
-  // const isInFavorite = favoriteItems.some(
-  //   (item) => item.slug.current === product.name
-  // );
-  // const FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine;
+  const favoriteItems = useSelector(
+    (state: IFavoriteRootState) => state.favorite.items
+  );
+  const isInFavorite = favoriteItems.some((item) => item.slug === product.slug);
+  const FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine;
 
   function addToCartHandler() {
     dispatch(cartActions.addItemToCart({ product: product, quantity: 1 }));
@@ -39,24 +35,24 @@ const CardActions: React.FC<Props> = ({ product }) => {
     });
   }
 
-  // function toggleFavoriteHandler() {
-  //   !isInFavorite
-  //     ? dispatch(favoriteActions.addToFavorite(product))
-  //     : dispatch(favoriteActions.removeFromFavorite(product.name));
-  // }
+  function toggleFavoriteHandler() {
+    !isInFavorite
+      ? dispatch(favoriteActions.addToFavorite(product))
+      : dispatch(favoriteActions.removeFromFavorite(product.slug));
+  }
 
   return (
     <div className="w-1/2 md:w-auto md:h-[130px] mt-2 p-2 flex md:flex-col justify-around self-center absolute bottom-2 md:-top-2 md:bottom-auto left-0  md:-left-1 rounded-lg md:rounded-full shadow-lg backdrop-filter backdrop-blur-[8px] bg-palette-card/20  ">
       <div
         className="hover:text-rose-600 transition-colors sm:px-3 md:px-0"
-        // onClick={toggleFavoriteHandler}
+        onClick={toggleFavoriteHandler}
       >
-        {/* <FavoriteIcon
+        <FavoriteIcon
           style={{
             fontSize: "1.2rem",
             fill: `${isInFavorite ? "#ee384e" : ""}`,
           }}
-        /> */}
+        />
       </div>
       <div className="hover:text-rose-600 transition-colors sm:px-3 md:px-0">
         <RiShareLine style={{ fontSize: "1.2rem" }} />

@@ -1,22 +1,14 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
-import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Slider from "react-slick";
+import { HiOutlineChevronRight, HiOutlineChevronLeft } from "react-icons/hi";
 import Slide from "./Slide";
+import useCarousel from "./useCarousel";
 import { NextArrow, PrevArrow } from "./Arrows";
 import Spinner from "../UI/Spinner";
-import { getSlider } from "../../server/DB/apiSlider";
 
 const Carousel = () => {
-  const {
-    isLoading,
-    data: sliders,
-    error,
-  } = useQuery({
-    queryKey: ["slider"],
-    queryFn: getSlider,
-  });
+  const { sliders, isLoading, error } = useCarousel();
 
   if (isLoading) return <Spinner />;
 

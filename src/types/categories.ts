@@ -1,4 +1,4 @@
-export interface TCategories {
+export interface ICategories {
   id: string;
   name: string;
   title: string;
@@ -7,10 +7,10 @@ export interface TCategories {
   imgWidth: number;
   imgHeight: number;
   href: string;
-  styles?: TStyleCat;
+  styles?: IStyleCat;
 }
 
-export interface TStyleCat {
+export interface IStyleCat {
   backgroundColor: string;
   flexDirection: string;
   paddingInline: string;

@@ -1,13 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./rating/StarRating";
 import ProductPrice from "../ProductPrice";
+import { IProduct } from "@/types/products ";
 import CardActions from "./CardActions";
-import { TProduct } from "@/types/products ";
 
 interface Props {
-  product: TProduct;
+  product: IProduct;
 }
 
 const Card: React.FC<Props> = ({ product }) => {
@@ -31,7 +33,7 @@ const Card: React.FC<Props> = ({ product }) => {
         <div className="w-1/2 md:w-full relative bg-slate-400/30 px-1 md:px-6 py-2 rounded-bl-xl rounded-tl-xl md:rounded-tr-xl md:rounded-bl-none rtl:order-2 rtl:md:order-none flex flex-col justify-between items-center">
           <div className="flex items-center h-full">
             <Image
-              src={product.img}
+              src={product.img[0]}
               width={280}
               height={300}
               alt={product.title}

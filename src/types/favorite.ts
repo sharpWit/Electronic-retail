@@ -1,8 +1,8 @@
-import { TProduct } from "./products";
-export type TFavorite = {
-  items: TProduct[];
-};
+import { IProduct } from "./products";
+export interface IFavorite {
+  items: IProduct[];
+}
 
-export type TFavoriteRootState = {
-  favorite: TFavorite;
-};
+export interface IFavoriteRootState {
+  favorite: IFavorite;
+}
