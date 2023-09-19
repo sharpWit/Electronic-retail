@@ -19,8 +19,8 @@ const FavoriteItem: React.FC<Props> = ({ product }) => {
   const { theme } = useTheme();
   const dispatch = useDispatch();
 
-  function onRemoveFavoriteItem(productSlug: string) {
-    dispatch(favoriteActions.removeFromFavorite(productSlug));
+  function onRemoveFavoriteItem(productId: string) {
+    dispatch(favoriteActions.removeFromFavorite(productId));
   }
 
   function onAddToCart(product: IProduct) {
@@ -39,7 +39,7 @@ const FavoriteItem: React.FC<Props> = ({ product }) => {
           {product?.img && (
             <Image
               src={product.img[0]}
-              alt="laptop image"
+              alt={product.title}
               width={200}
               height={185}
               className="object-contain hover:scale-105 transition-transform !p-2"
@@ -66,16 +66,16 @@ const FavoriteItem: React.FC<Props> = ({ product }) => {
           className="flex items-center flex-grow border-2 border-palette-primary rounded-md shadow-md text-palette-primary justify-center py-1 rtl:ml-2 ltr:mr-2 my-2 sm:my-0 text-sm sm:text-base"
           onClick={() => onAddToCart(product)}
         >
-          <span className="ltr:mr-1 rtl:ml-1">
+          <span className="ml-1">
             <BsCartPlus />
           </span>
           اضافه به سبد خرید
         </button>
         <button
           className="flex items-center border-2 border-gray-600/40 dark:border-gray-200/60 shadow-md rounded-md py-1 px-3 text-palette-base/60 text-sm sm:text-base"
-          onClick={() => onRemoveFavoriteItem(product.slug)}
+          onClick={() => onRemoveFavoriteItem(product.id)}
         >
-          <span className="ltr:mr-1 rtl:ml-1">
+          <span className="ml-1">
             <HiOutlineTrash />
           </span>
           حذف

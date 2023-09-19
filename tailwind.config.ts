@@ -1,8 +1,7 @@
-import type { Config } from "tailwindcss";
-import { RecursiveKeyValuePair } from "tailwindcss/types/config";
+import { Config } from "tailwindcss";
 
-function withOpacity(variableName: string): string {
-  return ({ opacityValue }) => {
+function withOpacity(variableName: string) {
+  return ({ opacityValue }: { opacityValue: string }) => {
     if (opacityValue !== undefined) {
       return `rgba(var(${variableName}), ${opacityValue})`;
     }
@@ -10,12 +9,10 @@ function withOpacity(variableName: string): string {
   };
 }
 
-const config: Config = {
-  mode: "jit",
+const config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
 
   theme: {
@@ -52,6 +49,10 @@ const config: Config = {
         english: "'Poppins', 'Roboto', 'sans-serif'",
       },
       keyframes: {
+        sidenavLTR: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0px)" },
+        },
         sidenavRTL: {
           "0%": { transform: "translateX(100%)" },
           "100%": { transform: "translateX(0px)" },
@@ -66,7 +67,9 @@ const config: Config = {
         },
       },
       animation: {
+        sidenavLTREntering: "sidenavLTR 0.3s ease-in-out forwards",
         sidenavRTLEntering: "sidenavRTL 0.3s ease-in-out forwards",
+        sidenavLTRExit: "sidenavLTR 0.3s ease-in-out reverse forwards",
         sidenavRTLExit: "sidenavRTL 0.3s ease-in-out reverse forwards",
         fadeEntering: "fade 0.3s forwards",
         fadeExit: "fade 0.3s reverse forwards",
@@ -80,4 +83,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

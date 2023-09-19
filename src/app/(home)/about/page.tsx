@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 
@@ -31,14 +32,14 @@ const About: NextPage = () => {
             }}
           />
           &nbsp;
-          <a
+          <Link
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="text-palette-side underline font-bold bg-palette-primary px-2"
           >
             PC-shop
-          </a>
+          </Link>
         </p>
         <p className="my-4">امیدوارم از تماشا و کار با این قالب لذت ببرید.</p>
         <p>سعید خسروی</p>

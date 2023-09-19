@@ -25,7 +25,7 @@ const CardActions: React.FC<Props> = ({ product }) => {
   const favoriteItems = useSelector(
     (state: IFavoriteRootState) => state.favorite.items
   );
-  const isInFavorite = favoriteItems.some((item) => item.slug === product.slug);
+  const isInFavorite = favoriteItems.some((item) => item.id === product.id);
   const FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine;
 
   function addToCartHandler() {
@@ -38,7 +38,7 @@ const CardActions: React.FC<Props> = ({ product }) => {
   function toggleFavoriteHandler() {
     !isInFavorite
       ? dispatch(favoriteActions.addToFavorite(product))
-      : dispatch(favoriteActions.removeFromFavorite(product.slug));
+      : dispatch(favoriteActions.removeFromFavorite(product.id));
   }
 
   return (

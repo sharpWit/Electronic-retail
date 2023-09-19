@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { createLogger } from "redux-logger";
 
 import specialOfferProductsReducer from "./specialOfferProducts-slice";
 import newestProductReducer from "./newestProduct-slice";
@@ -24,10 +25,19 @@ const store = configureStore({
     activeMenuItem: activeMenuItemReducer,
     favorite: favoriteReducer,
   },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+      serializableCheck: process.env.NODE_ENV !== "production",
+    }).concat(createLogger()),
+
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: false,
+  //   }),
+  // middleware: [createLogger()],
+
+  devTools: process.env.NODE_ENV !== "production",
 });
 
 export default store;

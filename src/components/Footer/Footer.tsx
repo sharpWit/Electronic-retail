@@ -2,6 +2,7 @@ import { BsFillSuitHeartFill } from "react-icons/bs";
 import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 import FooterColumns from "./footerContent/FooterColumns";
 import SocialPart from "./footerContent/SocialPart";
+import Link from "next/link";
 
 const Footer = () => {
   const StartQuot = RiDoubleQuotesR;
@@ -46,14 +47,14 @@ const Footer = () => {
             }}
           />
           &nbsp;
-          <a
+          <Link
             href="#"
             target="_blank"
             rel="noopener noreferrer"
             className="text-palette-side underline font-bold bg-palette-primary px-2"
           >
             PC-shop
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

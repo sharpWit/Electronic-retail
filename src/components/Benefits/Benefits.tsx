@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 import { benefitContent } from "../../mock/benefits";
 
 const Benefits = () => {
@@ -16,7 +15,6 @@ const Benefits = () => {
               width={48}
               src={benefitItem.imgSrc}
               alt={benefitItem.title}
-              className=""
             />
             <p className="py-2 text-sm md:text-base text-palette-base/90 text-center">
               {benefitItem.title}

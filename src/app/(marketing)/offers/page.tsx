@@ -3,13 +3,10 @@ import { IProduct } from "@/types/products ";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/products/offers/", {
-    cache: "no-store",
+    cache: "force-cache",
   });
-  if (!res.ok) {
-    throw new Error("Failed!");
-  }
-
-  return res.json();
+  const products: IProduct[] = await res.json();
+  return products;
 };
 
 const Offers = async () => {
@@ -25,3 +22,10 @@ const Offers = async () => {
 };
 
 export default Offers;
+
+export async function generateStaticParams() {
+  const res = await fetch("http://localhost:3000/api/products/offers/");
+  const data: IProduct[] = await res.json();
+
+  return data.map((product) => product.isOffer === true);
+}

@@ -11,7 +11,7 @@ interface Props {
 }
 const ProductDetails: React.FC<Props> = ({ product, products }) => {
   const similarProductsList = products
-    .filter((similarProduct) => similarProduct.slug !== product.slug)
+    .filter((similarProduct) => similarProduct.id !== product.id)
     .slice(0, 10);
 
   return (

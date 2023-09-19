@@ -11,7 +11,7 @@ const CartList = () => {
       <div className="w-full xl:max-w-[2100px] mx-auto">
         {cartItems.length
           ? cartItems.map((cartItem: ICartProduct) => {
-              return <CartItem key={cartItem.slug} product={cartItem} />;
+              return <CartItem key={cartItem.id} product={cartItem} />;
             })
           : null}
       </div>

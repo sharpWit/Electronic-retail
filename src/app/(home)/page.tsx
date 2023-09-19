@@ -1,16 +1,16 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { newestProductsActions } from "@/store/newestProduct-slice ";
 import { specialOfferProductsActions } from "@/store/specialOfferProducts-slice ";
-import dynamic from "next/dynamic";
+import useOferredProducts from "./useOferredProducts";
+import useProducts from "./useProducts";
+import Spinner from "@/components/UI/Spinner ";
 import Benefits from "@/components/Benefits/Benefits ";
 import Carousel from "@/components/carousel/Carousel ";
-import useOferredProducts from "./useOferredProducts";
-import Spinner from "@/components/UI/Spinner ";
 import { newestProductsFn } from "@/utilities/sortByTimeStamp ";
-import { newestProductsActions } from "@/store/newestProduct-slice ";
-import useProducts from "./useProducts";
 
 const Offers = dynamic(() => import("../../components/Offers/Offers"));
 const Category = dynamic(() => import("../../components/category/Category"));
@@ -23,7 +23,6 @@ const Banners = dynamic(() => import("../../components/banners/Banner"), {
 const Home = () => {
   const { products: offeredProducts, isLoading: isLoadingOffered } =
     useOferredProducts();
-  // const { products, isLoading } = useProducts();
   const { products, isLoading } = useProducts();
   const dispatch = useDispatch();
 

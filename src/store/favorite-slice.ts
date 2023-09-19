@@ -16,10 +16,8 @@ const favoriteSlice = createSlice({
       });
     },
     removeFromFavorite(state, action: PayloadAction<string>) {
-      const productSlug = action.payload;
-      state.items = state.items.filter(
-        (item) => item.slug.current !== productSlug
-      );
+      const productId = action.payload;
+      state.items = state.items.filter((item) => item.id !== productId);
     },
     clearCart(state) {
       state = initialState;
