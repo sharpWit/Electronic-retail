@@ -14,15 +14,15 @@ const ProductPageActions: React.FC<Props> = ({ product }) => {
   const favoriteItems = useSelector(
     (state: IFavoriteRootState) => state.favorite.items
   );
-  const isInFavorite = favoriteItems.some((item) => item.slug === product.slug);
+  const isInFavorite = favoriteItems.some((item) => item.id === product.id);
   let FavoriteIcon = isInFavorite ? RiHeartFill : RiHeartAddLine;
   function toggleFavoriteHandler() {
     !isInFavorite
       ? dispatch(favoriteActions.addToFavorite(product))
-      : dispatch(favoriteActions.removeFromFavorite(product.slug));
+      : dispatch(favoriteActions.removeFromFavorite(product.id));
   }
   return (
-    <div className=" py-4 -mt-6 flex flex-col justify-evenly absolute top-0 ltr:left-0 rtl:right-0 md:static rounded-lg z-10">
+    <div className=" py-4 -mt-6 flex flex-col justify-evenly absolute top-0 right-0 md:static rounded-lg z-10">
       <div
         className="hover:text-rose-600 transition-colors px-2 md:px-6 py-3 "
         onClick={toggleFavoriteHandler}

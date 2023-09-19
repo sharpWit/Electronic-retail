@@ -147,5 +147,5 @@ export default menuItems;
 
 export const extraMenu = [
   { title: `${fa.offer}`, icon: MdOutlineLocalOffer, href: "/offers" },
-  { title: `${fa.bestSells}`, icon: RiFireLine, href: "/" },
+  { title: "علاقه‌مندی‌ها", icon: RiFireLine, href: "/favorite" },
 ];

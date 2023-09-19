@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import { cartUiActions } from "../../store/cartUI-slice";
@@ -36,9 +34,9 @@ const CartBox = () => {
     <div className="hidden lg:flex flex-col absolute top-full rtl:left-0 ltr:right-0 min-h-[15rem] max-h-[25rem] w-[20rem] bg-palette-card z-[110] shadow-md rounded-lg overflow-auto">
       <div className="relative">
         <header className="flex items-center justify-between sticky top-0 left-0 right-0 text-sm font-normal z-10 bg-palette-card p-2">
-          <span>
-            {changeNumbersFormatEnToFa(cartItemQuantity)}
-            کالا
+          <span className="flex justify- items-centerbetween gap-2">
+            <div>{changeNumbersFormatEnToFa(cartItemQuantity)}</div>
+            <p>کالا</p>
           </span>
           <span onClick={onCloseCartBoxHandler}>
             <Link href="/cart" className="text-cyan-500">
@@ -51,7 +49,7 @@ const CartBox = () => {
           <>
             {cartItems.length ? (
               cartItems.map((item) => {
-                return <CartItem key={item.slug} product={item} />;
+                return <CartItem key={item.id} product={item} />;
               })
             ) : (
               <p className="mt-20 text-center text-palette-mute font-normal">

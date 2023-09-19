@@ -38,7 +38,7 @@ export interface IProductDetails {
 export interface IBrand {
   id: number;
   name: string;
-  desc: string;
+  desc?: string;
   logo: string;
   slug: string;
 }

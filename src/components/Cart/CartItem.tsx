@@ -16,7 +16,7 @@ interface Props {
 const CartItem: React.FC<Props> = ({ product }) => {
   const productQuantity = useSelector(
     (state: ICartRootState) =>
-      state.cart.items.find((item) => item.slug === product.slug)?.quantity
+      state.cart.items.find((item) => item.id === product.id)?.quantity
   );
   const [counter, setCounter] = useState(productQuantity);
   const dispatch = useDispatch();
@@ -26,9 +26,9 @@ const CartItem: React.FC<Props> = ({ product }) => {
     dispatch(cartActions.addItemToCart({ product: product, quantity: 1 }));
   }
 
-  function decrement(slug: string) {
+  function decrement(id: string) {
     setCounter((prev) => --prev!);
-    dispatch(cartActions.removeItemFromCart(slug));
+    dispatch(cartActions.removeItemFromCart(id));
   }
 
   function onInputNumberChangeHandler(e: React.ChangeEvent<HTMLInputElement>) {
@@ -41,24 +41,23 @@ const CartItem: React.FC<Props> = ({ product }) => {
       <div className="lg:w-1/2 sm:min-w-[290px]">
         <Link
           href={`/${product.slug}/${product.subSlug}/${product.groupTitle}/${product.enTitle}`}
+          className="flex flex-wrap sm:flex-nowrap justify-center items-center flex-grow"
         >
-          <a className="flex flex-wrap sm:flex-nowrap justify-center items-center flex-grow">
-            <div className="sm:min-w-[100px] md:min-w-[130px]">
-              <Image
-                src={product.img[0]}
-                width={200}
-                height={200}
-                alt={product.title}
-                className="object-contain"
-              />
-            </div>
-            <div
-              className="flex-grow text-sm font-normal mb-2 sm:mb-0 mx-2 w-full"
-              style={{ direction: "rtl" }}
-            >
-              {product.title}
-            </div>
-          </a>
+          <div className="sm:min-w-[100px] md:min-w-[130px]">
+            <Image
+              src={product.img[0]}
+              width={200}
+              height={200}
+              alt={product.title}
+              className="object-contain"
+            />
+          </div>
+          <div
+            className="flex-grow text-sm font-normal mb-2 sm:mb-0 mx-2 w-full"
+            style={{ direction: "rtl" }}
+          >
+            {product.title}
+          </div>
         </Link>
       </div>
       <div className="flex flex-wrap flex-grow md:items-center mb-4 sm:mb-0">
@@ -76,11 +75,11 @@ const CartItem: React.FC<Props> = ({ product }) => {
               onChange={onInputNumberChangeHandler}
             />
             {counter === 1 ? (
-              <div onClick={() => decrement(product.slug)} className="p-1">
+              <div onClick={() => decrement(product.id)} className="p-1">
                 <HiOutlineTrash style={{ fontSize: "1.3rem", color: "red" }} />
               </div>
             ) : (
-              <div onClick={() => decrement(product.slug)} className="p-1">
+              <div onClick={() => decrement(product.id)} className="p-1">
                 <HiMinusSm style={{ fontSize: "1rem" }} />
               </div>
             )}
