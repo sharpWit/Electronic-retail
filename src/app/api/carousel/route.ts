@@ -1,10 +1,10 @@
-import { prisma } from "@/utilities/connect ";
+import { db } from "@/utilities/connect ";
 import { NextResponse } from "next/server";
 
 // FETCH ALL sliders
 export const GET = async () => {
   try {
-    const sliders = await prisma.slider.findMany({});
+    const sliders = await db.slider.findMany({});
     return new NextResponse(JSON.stringify(sliders), { status: 200 });
   } catch (err) {
     console.log(err);

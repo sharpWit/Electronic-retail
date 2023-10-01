@@ -23,14 +23,13 @@ type Props = {
 
 const CategoryPage = async ({ params }: Props) => {
   const products: IProduct[] = await getData(params.category);
+
   const category = params.category;
 
   return (
     <div>
       <Breadcrumb />
-      <Suspense fallback={<Loading />}>
-        <SubmenuCategory cat={category} />
-      </Suspense>
+      <SubmenuCategory cat={category} />
       <Suspense fallback={<Loading />}>
         <ProductList productList={products} />
       </Suspense>
@@ -39,3 +38,29 @@ const CategoryPage = async ({ params }: Props) => {
 };
 
 export default CategoryPage;
+
+// export async function generateStaticParams() {
+//   const categories: ICategories[] = await fetch(
+//     "http://localhost:3000/api/categories/"
+//   ).then((res) => res.json());
+
+//   return categories.map((category) => ({
+//     category: category.href,
+//   }));
+// }
+
+// export async function generateStaticParams(): Promise<{ category: string }[]> {
+//   try {
+//     const res = await fetch("http://localhost:3000/api/categories");
+//     if (!res.ok) {
+//       throw new Error(`Fetch failed with status: ${res.status}`);
+//     }
+//     const categories: ICategories[] = await res.json();
+//     return categories.map((category) => ({
+//       category: category.href,
+//     }));
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return [];
+//   }
+// }

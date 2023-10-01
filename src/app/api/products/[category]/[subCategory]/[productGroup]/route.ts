@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/utilities/connect ";
+import { db } from "@/utilities/connect ";
 
 // FETCH ALL PRODUCTS
 export const GET = async (
@@ -9,7 +9,7 @@ export const GET = async (
   const groupCat = params.productGroup;
 
   try {
-    const products = await prisma.product.findMany({
+    const products = await db.product.findMany({
       where: {
         ...(groupCat ? { groupTitle: groupCat } : null),
       },

@@ -1,10 +1,10 @@
-import { prisma } from "@/utilities/connect ";
+import { db } from "@/utilities/connect ";
 import { NextResponse } from "next/server";
 
 // FETCH ALL offersProducts
 export const GET = async () => {
   try {
-    const offersProducts = await prisma.product.findMany({
+    const offersProducts = await db.product.findMany({
       where: {
         isOffer: true,
       },

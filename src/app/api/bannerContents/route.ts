@@ -1,10 +1,10 @@
-import { prisma } from "@/utilities/connect ";
+import { db } from "@/utilities/connect ";
 import { NextResponse } from "next/server";
 
 // FETCH ALL bannerContent
 export const GET = async () => {
   try {
-    const banners = await prisma.bannerContent.findMany({});
+    const banners = await db.bannerContent.findMany({});
     return new NextResponse(JSON.stringify(banners), { status: 200 });
   } catch (err) {
     console.log(err);
