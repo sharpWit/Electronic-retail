@@ -1,60 +1,76 @@
+import { NextAuthOptions, getServerSession } from "next-auth";
+import { compare } from "bcryptjs";
+import { db } from "@/utilities/connect ";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { NextAuthOptions, User, getServerSession } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import { prisma } from "./connect";
-
-declare module "next-auth" {
-  interface Session {
-    user: User & {
-      isAdmin: Boolean;
-    };
-  }
-}
-declare module "next-auth/jwt" {
-  interface JWT {
-    isAdmin: Boolean;
-  }
-}
+import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(db),
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/sign-in",
+  },
   providers: [
-    GoogleProvider({
-      // clientId: process.env.GOOGLE_ID as string,
-      // clientSecret: process.env.GOOGLE_SECRET as string,
-      clientId: process.env.GOOGLE_ID!,
-      clientSecret: process.env.GOOGLE_SECRET!,
+    CredentialsProvider({
+      name: "Credentials",
+
+      credentials: {
+        email: {
+          label: "ایمیل",
+          type: "text",
+          placeholder: "example@example.com",
+        },
+        password: { label: "رمز عبور", type: "password" },
+      },
+      async authorize(credentials, req) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+        const existingUser = await db.user.findUnique({
+          where: { email: credentials?.email },
+        });
+        if (!existingUser) {
+          return null;
+        }
+        const passwordMatch = await compare(
+          credentials.password,
+          existingUser.password
+        );
+
+        if (!passwordMatch) {
+          return null;
+        }
+        return {
+          id: existingUser.id,
+          username: existingUser.username,
+          email: existingUser.email,
+        };
+      },
     }),
   ],
+
   callbacks: {
-    async session({ token, session }) {
-      if (token) {
-        session.user.isAdmin = token.isAdmin;
+    async jwt({ token, user }) {
+      if (user) {
+        return {
+          ...token,
+          username: user.username,
+        };
       }
-      return session;
-    },
-    async jwt({ token }) {
-      const userInDb = await prisma.user.findUnique({
-        where: {
-          email: token.email!,
-        },
-      });
-      token.isAdmin = userInDb?.isAdmin!;
       return token;
+    },
+    async session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          username: token.username,
+        },
+      };
     },
   },
 };
 
 export const getAuthSession = () => getServerSession(authOptions);
-
-// import { TUser } from "@/types/user ";
-// // import jwt from "jsonwebtoken";
-
-// export const signToken = (user: TUser) => {
-//   return jwt.sign(user, process.env.JWT_SECRET as string, {
-//     expiresIn: "30d",
-//   });
-// };

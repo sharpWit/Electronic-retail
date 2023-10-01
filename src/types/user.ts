@@ -1,11 +1,11 @@
 export interface IUser {
-  id: string;
-  name?: string;
+  id?: string;
+  username: string;
   email: string;
   password?: string;
-  isAdmin: boolean;
-  accounts: string[];
-  sessions: string[];
+  isAdmin?: boolean;
+  accounts?: string[];
+  sessions?: string[];
   orders?: string[];
 }
 

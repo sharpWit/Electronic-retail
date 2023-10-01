@@ -29,15 +29,14 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: process.env.NODE_ENV !== "production",
-    }).concat(createLogger()),
-
+    }),
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({
-  //     serializableCheck: false,
-  //   }),
-  // middleware: [createLogger()],
+  //     serializableCheck: process.env.NODE_ENV !== "production",
+  //   }).concat(createLogger()),
 
-  devTools: process.env.NODE_ENV !== "production",
+  // devTools: process.env.NODE_ENV !== "production",
+  devTools: true,
 });
 
 export default store;

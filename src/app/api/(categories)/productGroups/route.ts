@@ -1,4 +1,4 @@
-import { prisma } from "@/utilities/connect ";
+import { db } from "@/utilities/connect ";
 import { NextResponse } from "next/server";
 
 // FETCH ALL CATEGORIES
@@ -6,7 +6,7 @@ export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const subCat = searchParams.get("subCat");
   try {
-    const productGroups = await prisma.productGroup.findMany({
+    const productGroups = await db.productGroup.findMany({
       where: {
         ...(subCat ? { subSlug: subCat } : null),
       },

@@ -1,21 +1,22 @@
 import Link from "next/link";
-
-import { extraMenu } from "../../../../mock/menuItems";
+import { MdLocalFireDepartment, MdOutlineFavorite } from "react-icons/md";
 
 const ExtraMenu = () => {
   return (
     <div className="flex items-center rtl:border-r-2 border-gray-300 grow rtl:mx-5 ">
-      {extraMenu.map((menuItem) => {
-        return (
-          <div
-            className="flex items-center text-base/90 mx-2"
-            key={menuItem.title}
-          >
-            <menuItem.icon />
-            <Link href={menuItem.href}>{menuItem.title}</Link>
-          </div>
-        );
-      })}
+      <ul className="flex items-center text-base/90 mx-2 gap-4">
+        <li className="flex items-center ml-1">
+          <MdLocalFireDepartment />
+          <Link href="/offers">پیشنهادات ویژه</Link>
+        </li>
+        <li className="flex items-center ml-1">
+          <MdOutlineFavorite />
+          <Link href="/favorite">علاقه‌مندی‌ها</Link>
+        </li>
+        <li>
+          <Link href="/about">درباره‌ی ما</Link>
+        </li>
+      </ul>
     </div>
   );
 };

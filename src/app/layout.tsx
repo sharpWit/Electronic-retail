@@ -13,13 +13,13 @@ export const metadata: Metadata = {
   description: "طراحی و توسعه این فروشگاه توسط سعید خسروی انجام شده است",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" dir="rtl">
+    <html lang="fa-IR" dir="rtl">
       <head>
         <link rel="shortcut icon" href="/images/zishop.ico" />
       </head>
